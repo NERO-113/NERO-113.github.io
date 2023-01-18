@@ -1,3 +1,8 @@
+@font-face {
+  font-family: 'Sans Forgetica';
+  src: url('SansForgetica-Regular.otf') format('opentype');
+}
+
 html {
   font-family: 'Sans Forgetica';
   background-color: #00c97c;
@@ -5,13 +10,8 @@ html {
   font-size: auto;
   zoom: 115%;
   display: contents;
-}
+}  
 
-
-@font-face {
-  font-family: 'Sans Forgetica';
-  src: url('SansForgetica-Regular.otf') format('opentype');
-}
 
 body {
   position: 0 716 0 0;

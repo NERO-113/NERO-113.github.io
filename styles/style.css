@@ -15,7 +15,7 @@ html {
 }
 
 body {
-  position: 0px 716px 0px 0px;
+  position: 0 716 0 0;
   width: 600px;
   margin: 33% auto;
   background-color: #ff9500;

@@ -16,9 +16,9 @@ html {
 body {
   position: 0 716 0 0;
   width: 600px;
-  margin: 33% auto;
+  margin: 0 auto;
   background-color: #ff9500;
-  padding: 20px 0px;
+  padding: 0px 20px;
   border: 5px solid black;
 }
 

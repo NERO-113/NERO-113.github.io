@@ -31,7 +31,7 @@ myImage.onclick = () => {
     },10);
 }
 */
-img.onclick = () => {
+document.onclick = () => {
     alerte();
 }
 let clicked=0

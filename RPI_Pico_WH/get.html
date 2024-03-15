@@ -1,10 +1,25 @@
 <html>
 
 <head>
+    <link rel="preconnect" href="get.json">
     <script>
+        function loadFile(filePath) {
+            var result = null;
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.open("GET", filePath, false);
+            xmlhttp.send();
+            if (xmlhttp.status == 200) {
+                result = xmlhttp.responseText;
+            }
+            return result;
+        }
         var r = new URLSearchParams(window.location.search);
         var d = r.get("direction");
         var t = r.get("lenght");
+        var h = loadFile("https://nero-113.github.io/RPI_Pico_WH/get.json");
+        alert(h);
+        const o = open("https://nero-113.github.io/RPI_Pico_WH/get.json", "");
+        const obj = JSON.parse(o.JSON);
         //alert(r);
         alert(d);
         alert(t);

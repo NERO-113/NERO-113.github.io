@@ -2,8 +2,12 @@
 
 <head>
     <script>
-        var r = window.location.search
+        var r = new URLSearchParams(window.location.search);
+        var d = r.get("direction");
+        var t = r.get("lenght");
         alert(r);
+        alert(d);
+        alert(t);
     </script>
 </head>
 

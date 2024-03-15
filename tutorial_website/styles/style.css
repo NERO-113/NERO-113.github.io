@@ -1,0 +1,48 @@
+@font-face {
+  font-family: 'Sans Forgetica';
+  src: url('SansForgetica-Regular.otf') format('opentype');
+}
+
+html {
+  font-family: 'Sans Forgetica';
+  background-color: #00c97c;
+  height: 100%;
+  font-size: auto;
+  zoom: 115%;
+  display: contents;
+}  
+
+
+body {
+  position: 0 716 0 0;
+  width: 600px;
+  margin: 33% auto;
+  background-color: #ff9500;
+  padding: 0px 20px;
+  border: 5px solid black;
+}
+
+q {
+  user-select: none;
+  letter-spacing: auto;
+  
+}
+
+a {
+  font-family: "Open Sans", sans-serif;
+}
+
+h1 {
+  text-align: center;
+  margin: 0;
+  padding: 20px 0;
+  color: #0000ff;
+  text-shadow: 3px 3px 3px #2b2b2b;
+}
+
+img {
+  display: block;
+  margin: 0 auto;
+  
+}
+

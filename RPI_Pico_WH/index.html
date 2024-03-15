@@ -3,13 +3,30 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>My test page</title>
-    <meta name="description" content="my test page" />
+    <title>Controlling the RPI Pico</title>
+    <meta name="description" content="Controlling the RPI Pico" />
 </head>
 
 <body>
-
-    <h1>Minecraft</h1>
+    <h3>Movement</h3>
+    <form>
+        <div>
+            <label for="direction">Choose a direction: </label>
+            <input type="text" id="direction" name="direction" placeholder="f/b/lf/rl" required />
+            <p style="font-size: 80%; color:#999;">f=forward b=backward lf=left&forward rl=right&forward</p>
+        </div>
+        <div>
+            <label for="lenght">Choose a lenght: </label>
+            <input type="text" id="lenght" name="lenght" value="20" />
+        </div>
+        <div>
+            <label for="direction">...</label>
+            <input type="text" id="direction" name="direction" readonly="true" />
+        </div>
+        <div>
+            <button>Submit</button>
+        </div>
+    </form>
 </body>
 
 </html>

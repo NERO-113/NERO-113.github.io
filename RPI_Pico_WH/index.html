@@ -10,23 +10,19 @@
 <body style="font-size: 100%;">
     <h3 style="font-size: 300%;">Movement</h3>
     <form method="get" action="get.html">
-        <div>
-            <label for="direction" style="font-size: 300%;">Choose a direction: </label>
-            <input type="text" id="direction" name="direction" placeholder="f/b/lf/rl" required
-                style="font-size: 300%;" />
-            <p style="font-size: 240%; color:#999;">f=forward b=backward lf=left&forward rl=right&forward</p>
-        </div>
-        <div>
-            <label for="lenght" style="font-size: 300%;">Choose a lenght: </label>
-            <input type="text" id="lenght" name="lenght" value="20" style="font-size: 300%;" />
-        </div>
-        <div>
+        <label for="direction" style="font-size: 300%;">Choose a direction: </label>
+        <input type="text" id="direction" name="direction" placeholder="f/b/lf/rl" required style="font-size: 300%;" />
+        <p style="font-size: 240%; color:#999;">f=forward b=backward lf=left&forward rl=right&forward</p>
+        <p></p>
+        <label for="lenght" style="font-size: 300%;">Choose a lenght: </label>
+        <input type="text" id="lenght" name="lenght" value="20" style="font-size: 300%;" />
+        <!--
+            <p></p>
             <label for="direction" style="font-size: 300%;">...</label>
             <input type="text" id="direction" name="direction" readonly="true" style="font-size: 300%;" />
-        </div>
-        <div>
-            <button style="font-size: 300%;" id="get">Submit</button>
-        </div>
+            <p></p>
+        -->
+        <input type="submit" style="font-size: 300%;" id="get" />
     </form>
     <script>
 

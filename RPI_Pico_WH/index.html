@@ -16,12 +16,21 @@
         <p></p>
         <label for="lenght" style="font-size: 300%;">Choose a lenght: </label>
         <input type="text" id="lenght" name="lenght" value="20" style="font-size: 300%;" />
+        <p>
+            <script>
+                sum = document.getElementById('direction').value;
+                sum;
+            </script>
+        </p>
         <!--
+        const sum = 21 + 21;
+console.log ("Summe " + sum);
             <p></p>
             <label for="direction" style="font-size: 300%;">...</label>
             <input type="text" id="direction" name="direction" readonly="true" style="font-size: 300%;" />
             <p></p>
         -->
+        <input type="button" onclick="console.log ('Summe ' + sum)"/>
         <input type="submit" style="font-size: 300%;" id="get" />
     </form>
     <script>

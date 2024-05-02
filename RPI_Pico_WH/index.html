@@ -19,7 +19,6 @@
         <p>
             <script>
                 sum = document.getElementById('direction').value;
-                sum;
             </script>
         </p>
         <!--
@@ -30,7 +29,7 @@ console.log ("Summe " + sum);
             <input type="text" id="direction" name="direction" readonly="true" style="font-size: 300%;" />
             <p></p>
         -->
-        <input type="button" onclick="console.log ('Summe ' + sum)"/>
+        <button type="button" onclick="console.log ('Summe ' + sum);window.alert(sum);">What is sum?</button>
         <input type="submit" style="font-size: 300%;" id="get" />
     </form>
     <script>

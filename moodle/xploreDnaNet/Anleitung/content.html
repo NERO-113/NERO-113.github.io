@@ -1,455 +1,883 @@
-<html lang="de"><head>
-    <title>Kurs: T1-Data Base</title>
-    <link rel="shortcut icon" href="https://www.xplore-dna.net/theme/image.php/boost/theme/1733774065/favicon">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<meta name="keywords" content="moodle, Kurs: T1-Data Base">
-<link rel="stylesheet" type="text/css" href="https://www.xplore-dna.net/theme/yui_combo.php?rollup/3.17.2/yui-moodlesimple-min.css"><script charset="utf-8" id="yui_3_17_2_1_1734423774460_8" src="https://www.xplore-dna.net/theme/yui_combo.php?m/1733752523/core/event/event-min.js&amp;m/1733752523/filter_mathjaxloader/loader/loader-min.js" async=""></script><link charset="utf-8" rel="stylesheet" id="yui_3_17_2_1_1734423774460_19" href="https://www.xplore-dna.net/theme/yui_combo.php?3.17.2/cssbutton/cssbutton-min.css"><script charset="utf-8" id="yui_3_17_2_1_1734423774460_20" src="https://www.xplore-dna.net/theme/yui_combo.php?m/1733752523/core/widget/widget-focusafterclose-min.js&amp;3.17.2/plugin/plugin-min.js&amp;m/1733752523/core/lockscroll/lockscroll-min.js&amp;m/1733752523/core/notification/notification-dialogue-min.js&amp;m/1733752523/core/notification/notification-alert-min.js&amp;m/1733752523/core/notification/notification-exception-min.js&amp;m/1733752523/core/notification/notification-ajaxexception-min.js&amp;m/1733752523/filter_glossary/autolinker/autolinker-min.js" async=""></script><script charset="utf-8" id="yui_3_17_2_1_1734423774460_28" src="https://www.xplore-dna.net/theme/yui_combo.php?3.17.2/event-mousewheel/event-mousewheel-min.js&amp;3.17.2/event-resize/event-resize-min.js&amp;3.17.2/event-hover/event-hover-min.js&amp;3.17.2/event-touch/event-touch-min.js&amp;3.17.2/event-move/event-move-min.js&amp;3.17.2/event-flick/event-flick-min.js&amp;3.17.2/event-valuechange/event-valuechange-min.js&amp;3.17.2/event-tap/event-tap-min.js" async=""></script><script charset="utf-8" id="yui_3_17_2_1_1734423774460_30" src="https://www.xplore-dna.net/theme/yui_combo.php?m/1733752523/course/coursebase/coursebase-min.js" async=""></script><script charset="utf-8" id="yui_3_17_2_1_1734423774460_55" src="https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js?delayStartupUntil=configured" async=""></script><script id="firstthemesheet" type="text/css">/** Required in order to fix style inclusion problems in IE with YUI **/</script><link rel="stylesheet" type="text/css" href="https://www.xplore-dna.net/theme/styles.php/boost/1733774065_1/all">
-<script>
-//<![CDATA[
-var M = {}; M.yui = {};
-M.pageloadstarttime = new Date();
-M.cfg = {"wwwroot":"https:\/\/www.xplore-dna.net","homeurl":{},"sesskey":"nUSSqKsjhB","sessiontimeout":"7200","sessiontimeoutwarning":1200,"themerev":"1733774065","slasharguments":1,"theme":"boost","iconsystemmodule":"core\/icon_system_fontawesome","jsrev":"1733752523","admin":"admin","svgicons":true,"usertimezone":"Europa\/Berlin","courseId":600,"courseContextId":26405,"contextid":26405,"contextInstanceId":600,"langrev":1734407943,"templaterev":"1733752523"};var yui1ConfigFn = function(me) {if(/-skin|reset|fonts|grids|base/.test(me.name)){me.type='css';me.path=me.path.replace(/\.js/,'.css');me.path=me.path.replace(/\/yui2-skin/,'/assets/skins/sam/yui2-skin')}};
-var yui2ConfigFn = function(me) {var parts=me.name.replace(/^moodle-/,'').split('-'),component=parts.shift(),module=parts[0],min='-min';if(/-(skin|core)$/.test(me.name)){parts.pop();me.type='css';min=''}
-if(module){var filename=parts.join('-');me.path=component+'/'+module+'/'+filename+min+'.'+me.type}else{me.path=component+'/'+component+'.'+me.type}};
-YUI_config = {"debug":false,"base":"https:\/\/www.xplore-dna.net\/lib\/yuilib\/3.17.2\/","comboBase":"https:\/\/www.xplore-dna.net\/theme\/yui_combo.php?","combine":true,"filter":null,"insertBefore":"firstthemesheet","groups":{"yui2":{"base":"https:\/\/www.xplore-dna.net\/lib\/yuilib\/2in3\/2.9.0\/build\/","comboBase":"https:\/\/www.xplore-dna.net\/theme\/yui_combo.php?","combine":true,"ext":false,"root":"2in3\/2.9.0\/build\/","patterns":{"yui2-":{"group":"yui2","configFn":yui1ConfigFn}}},"moodle":{"name":"moodle","base":"https:\/\/www.xplore-dna.net\/theme\/yui_combo.php?m\/1733752523\/","combine":true,"comboBase":"https:\/\/www.xplore-dna.net\/theme\/yui_combo.php?","ext":false,"root":"m\/1733752523\/","patterns":{"moodle-":{"group":"moodle","configFn":yui2ConfigFn}},"filter":null,"modules":{"moodle-core-languninstallconfirm":{"requires":["base","node","moodle-core-notification-confirm","moodle-core-notification-alert"]},"moodle-core-actionmenu":{"requires":["base","event","node-event-simulate"]},"moodle-core-blocks":{"requires":["base","node","io","dom","dd","dd-scroll","moodle-core-dragdrop","moodle-core-notification"]},"moodle-core-notification":{"requires":["moodle-core-notification-dialogue","moodle-core-notification-alert","moodle-core-notification-confirm","moodle-core-notification-exception","moodle-core-notification-ajaxexception"]},"moodle-core-notification-dialogue":{"requires":["base","node","panel","escape","event-key","dd-plugin","moodle-core-widget-focusafterclose","moodle-core-lockscroll"]},"moodle-core-notification-alert":{"requires":["moodle-core-notification-dialogue"]},"moodle-core-notification-confirm":{"requires":["moodle-core-notification-dialogue"]},"moodle-core-notification-exception":{"requires":["moodle-core-notification-dialogue"]},"moodle-core-notification-ajaxexception":{"requires":["moodle-core-notification-dialogue"]},"moodle-core-chooserdialogue":{"requires":["base","panel","moodle-core-notification"]},"moodle-core-formchangechecker":{"requires":["base","event-focus","moodle-core-event"]},"moodle-core-event":{"requires":["event-custom"]},"moodle-core-lockscroll":{"requires":["plugin","base-build"]},"moodle-core-tooltip":{"requires":["base","node","io-base","moodle-core-notification-dialogue","json-parse","widget-position","widget-position-align","event-outside","cache-base"]},"moodle-core-popuphelp":{"requires":["moodle-core-tooltip"]},"moodle-core-maintenancemodetimer":{"requires":["base","node"]},"moodle-core-handlebars":{"condition":{"trigger":"handlebars","when":"after"}},"moodle-core-dragdrop":{"requires":["base","node","io","dom","dd","event-key","event-focus","moodle-core-notification"]},"moodle-core_availability-form":{"requires":["base","node","event","event-delegate","panel","moodle-core-notification-dialogue","json"]},"moodle-backup-confirmcancel":{"requires":["node","node-event-simulate","moodle-core-notification-confirm"]},"moodle-backup-backupselectall":{"requires":["node","event","node-event-simulate","anim"]},"moodle-course-categoryexpander":{"requires":["node","event-key"]},"moodle-course-management":{"requires":["base","node","io-base","moodle-core-notification-exception","json-parse","dd-constrain","dd-proxy","dd-drop","dd-delegate","node-event-delegate"]},"moodle-course-util":{"requires":["node"],"use":["moodle-course-util-base"],"submodules":{"moodle-course-util-base":{},"moodle-course-util-section":{"requires":["node","moodle-course-util-base"]},"moodle-course-util-cm":{"requires":["node","moodle-course-util-base"]}}},"moodle-course-dragdrop":{"requires":["base","node","io","dom","dd","dd-scroll","moodle-core-dragdrop","moodle-core-notification","moodle-course-coursebase","moodle-course-util"]},"moodle-form-passwordunmask":{"requires":[]},"moodle-form-dateselector":{"requires":["base","node","overlay","calendar"]},"moodle-form-shortforms":{"requires":["node","base","selector-css3","moodle-core-event"]},"moodle-question-chooser":{"requires":["moodle-core-chooserdialogue"]},"moodle-question-searchform":{"requires":["base","node"]},"moodle-question-preview":{"requires":["base","dom","event-delegate","event-key","core_question_engine"]},"moodle-availability_completion-form":{"requires":["base","node","event","moodle-core_availability-form"]},"moodle-availability_date-form":{"requires":["base","node","event","io","moodle-core_availability-form"]},"moodle-availability_grade-form":{"requires":["base","node","event","moodle-core_availability-form"]},"moodle-availability_group-form":{"requires":["base","node","event","moodle-core_availability-form"]},"moodle-availability_grouping-form":{"requires":["base","node","event","moodle-core_availability-form"]},"moodle-availability_profile-form":{"requires":["base","node","event","moodle-core_availability-form"]},"moodle-mod_assign-history":{"requires":["node","transition"]},"moodle-mod_quiz-quizbase":{"requires":["base","node"]},"moodle-mod_quiz-autosave":{"requires":["base","node","event","event-valuechange","node-event-delegate","io-form"]},"moodle-mod_quiz-modform":{"requires":["base","node","event"]},"moodle-mod_quiz-questionchooser":{"requires":["moodle-core-chooserdialogue","moodle-mod_quiz-util","querystring-parse"]},"moodle-mod_quiz-util":{"requires":["node","moodle-core-actionmenu"],"use":["moodle-mod_quiz-util-base"],"submodules":{"moodle-mod_quiz-util-base":{},"moodle-mod_quiz-util-slot":{"requires":["node","moodle-mod_quiz-util-base"]},"moodle-mod_quiz-util-page":{"requires":["node","moodle-mod_quiz-util-base"]}}},"moodle-mod_quiz-toolboxes":{"requires":["base","node","event","event-key","io","moodle-mod_quiz-quizbase","moodle-mod_quiz-util-slot","moodle-core-notification-ajaxexception"]},"moodle-mod_quiz-dragdrop":{"requires":["base","node","io","dom","dd","dd-scroll","moodle-core-dragdrop","moodle-core-notification","moodle-mod_quiz-quizbase","moodle-mod_quiz-util-base","moodle-mod_quiz-util-page","moodle-mod_quiz-util-slot","moodle-course-util"]},"moodle-message_airnotifier-toolboxes":{"requires":["base","node","io"]},"moodle-filter_glossary-autolinker":{"requires":["base","node","io-base","json-parse","event-delegate","overlay","moodle-core-event","moodle-core-notification-alert","moodle-core-notification-exception","moodle-core-notification-ajaxexception"]},"moodle-filter_mathjaxloader-loader":{"requires":["moodle-core-event"]},"moodle-editor_atto-editor":{"requires":["node","transition","io","overlay","escape","event","event-simulate","event-custom","node-event-html5","node-event-simulate","yui-throttle","moodle-core-notification-dialogue","moodle-core-notification-confirm","moodle-editor_atto-rangy","handlebars","timers","querystring-stringify"]},"moodle-editor_atto-plugin":{"requires":["node","base","escape","event","event-outside","handlebars","event-custom","timers","moodle-editor_atto-menu"]},"moodle-editor_atto-menu":{"requires":["moodle-core-notification-dialogue","node","event","event-custom"]},"moodle-editor_atto-rangy":{"requires":[]},"moodle-report_eventlist-eventfilter":{"requires":["base","event","node","node-event-delegate","datatable","autocomplete","autocomplete-filters"]},"moodle-report_loglive-fetchlogs":{"requires":["base","event","node","io","node-event-delegate"]},"moodle-gradereport_history-userselector":{"requires":["escape","event-delegate","event-key","handlebars","io-base","json-parse","moodle-core-notification-dialogue"]},"moodle-qbank_editquestion-chooser":{"requires":["moodle-core-chooserdialogue"]},"moodle-tool_capability-search":{"requires":["base","node"]},"moodle-tool_lp-dragdrop-reorder":{"requires":["moodle-core-dragdrop"]},"moodle-tool_monitor-dropdown":{"requires":["base","event","node"]},"moodle-assignfeedback_editpdf-editor":{"requires":["base","event","node","io","graphics","json","event-move","event-resize","transition","querystring-stringify-simple","moodle-core-notification-dialog","moodle-core-notification-alert","moodle-core-notification-warning","moodle-core-notification-exception","moodle-core-notification-ajaxexception"]},"moodle-atto_accessibilitychecker-button":{"requires":["color-base","moodle-editor_atto-plugin"]},"moodle-atto_accessibilityhelper-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_align-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_bold-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_charmap-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_clear-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_collapse-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_embedquestion-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_emojipicker-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_emoticon-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_equation-button":{"requires":["moodle-editor_atto-plugin","moodle-core-event","io","event-valuechange","tabview","array-extras"]},"moodle-atto_h5p-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_html-button":{"requires":["promise","moodle-editor_atto-plugin","moodle-atto_html-beautify","moodle-atto_html-codemirror","event-valuechange"]},"moodle-atto_html-codemirror":{"requires":["moodle-atto_html-codemirror-skin"]},"moodle-atto_html-beautify":{},"moodle-atto_image-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_indent-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_italic-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_link-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_managefiles-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_managefiles-usedfiles":{"requires":["node","escape"]},"moodle-atto_media-button":{"requires":["moodle-editor_atto-plugin","moodle-form-shortforms"]},"moodle-atto_noautolink-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_orderedlist-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_recordrtc-button":{"requires":["moodle-editor_atto-plugin","moodle-atto_recordrtc-recording"]},"moodle-atto_recordrtc-recording":{"requires":["moodle-atto_recordrtc-button"]},"moodle-atto_rtl-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_strike-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_subscript-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_superscript-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_table-button":{"requires":["moodle-editor_atto-plugin","moodle-editor_atto-menu","event","event-valuechange"]},"moodle-atto_title-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_underline-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_undo-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_unorderedlist-button":{"requires":["moodle-editor_atto-plugin"]}}},"gallery":{"name":"gallery","base":"https:\/\/www.xplore-dna.net\/lib\/yuilib\/gallery\/","combine":true,"comboBase":"https:\/\/www.xplore-dna.net\/theme\/yui_combo.php?","ext":false,"root":"gallery\/1733752523\/","patterns":{"gallery-":{"group":"gallery"}}}},"modules":{"core_filepicker":{"name":"core_filepicker","fullpath":"https:\/\/www.xplore-dna.net\/lib\/javascript.php\/1733752523\/repository\/filepicker.js","requires":["base","node","node-event-simulate","json","async-queue","io-base","io-upload-iframe","io-form","yui2-treeview","panel","cookie","datatable","datatable-sort","resize-plugin","dd-plugin","escape","moodle-core_filepicker","moodle-core-notification-dialogue"]},"core_comment":{"name":"core_comment","fullpath":"https:\/\/www.xplore-dna.net\/lib\/javascript.php\/1733752523\/comment\/comment.js","requires":["base","io-base","node","json","yui2-animation","overlay","escape"]},"mathjax":{"name":"mathjax","fullpath":"https:\/\/cdn.jsdelivr.net\/npm\/mathjax@2.7.9\/MathJax.js?delayStartupUntil=configured"}}};
-M.yui.loader = {modules: {}};
-
-//]]>
-</script>
-
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<style type="text/css" id="operaUserStyle"></style><style type="text/css">:root .trc_related_container div[data-item-syndicated="true"], :root [href^="//mage98rquewz.com/"], :root [href^="//x4pollyxxpush.com/"], :root span[id^="ezoic-pub-ad-placeholder-"], :root ins.adsbygoogle[data-ad-slot], :root ins.adsbygoogle[data-ad-client], :root guj-ad, :root gpt-ad, :root div[id^="zergnet-widget"], :root div[id^="vuukle-ad-"], :root div[id^="taboola-stream-"], :root div[id^="sticky_ad_"], :root div[id^="st"][style^="z-index: 999999999;"], :root div[id^="pa_sticky_ad_box_middle_"], :root div[id^="gpt_ad_"], :root div[id^="ezoic-pub-ad-"], :root div[id^="dfp-ad-"], :root div[id^="crt-"][style], :root div[id^="adspot-"], :root div[id^="adrotate_widgets-"], :root ps-connatix-module, :root div[id^="ad_position_"], :root div[id^="ad-div-"], :root div[id*="ScriptRoot"], :root div[id*="MarketGid"], :root div[data-id-advertdfpconf], :root hl-adsense, :root div[data-contentexchange-widget], :root div[data-alias="300x250 Ad 2"], :root div[data-adzone], :root div[data-adunit-path], :root div[data-adname], :root div[data-ad-targeting], :root div[data-ad-placeholder], :root div[class^="native-ad-"], :root div[data-dfp-id], :root div[class^="kiwi-ad-wrapper"], :root div[aria-label="Ads"], :root display-ads, :root display-ad-component, :root atf-ad-slot, :root aside[id^="adrotate_widgets-"], :root ark-top-ad, :root amp-fx-flying-carpet, :root amp-embed[type="taboola"], :root amp-connatix-player, :root amp-ad-custom, :root amp-ad, :root div[id^="google_dfp_"], :root ad-slot, :root ad-shield-ads, :root a[style="width:100%;height:100%;z-index:10000000000000000;position:absolute;top:0;left:0;"], :root a[onmousedown^="this.href='https://paid.outbrain.com/network/redir?"][target="_blank"] + .ob_source, :root a[href^="https://xbet-4.com/"], :root div[id^="ad-position-"], :root a[href^="https://www.toprevenuegate.com/"], :root a[href^="https://www.purevpn.com/"][href*="&utm_source=aff-"], :root a[href^="https://www.privateinternetaccess.com/"] > img, :root a[href^="https://www.onlineusershielder.com/"], :root a[href^="https://financeads.net/tc.php?"], :root a[href^="https://www.mrskin.com/tour"], :root a[href^="https://www.infowarsstore.com/"] > img, :root a[href^="https://www.highperformancecpmgate.com/"], :root a[href^="https://www.highcpmrevenuenetwork.com/"], :root a[href^="https://lnkxt.bannerator.com/"], :root a[href^="https://www.geekbuying.com/dynamic-ads/"], :root a[href^="https://www.financeads.net/tc.php?"], :root [href^="https://www.herbanomic.com/"] > img, :root a[href^="https://maymooth-stopic.com/"], :root a[href^="https://www.dql2clk.com/"], :root a[href^="https://www.nutaku.net/signup/landing/"], :root a[href^="https://www.dating-finder.com/signup/?ai_d="], :root a[href^="https://explore-site.com/"], :root a[href^="https://www.brazzersnetwork.com/landing/"], :root a[href^="https://www.adxsrve.com/"], :root [data-template-type="nativead"], :root a[href^="https://www.endorico.com/Smartlink/"], :root a[href^="https://www.adultempire.com/"][href*="?partner_id="], :root a[href^="https://voluum.prom-xcams.com/"], :root div[data-type="_mgwidget"]:not(.eyeo), :root a[href^="https://twinrdsrv.com/"], :root a[href^="https://trk.nfl-online-streams.club/"], :root a[href^="https://tracking.avapartner.com/"], :root a[href^="https://track.wg-aff.com"], :root a[href^="https://track.ultravpn.com/"], :root a[href^="https://track.afcpatrk.com/"], :root a[href^="https://torguard.net/aff.php"] > img, :root [data-identity="adhesive-ad"], :root a[href^="https://tc.tradetracker.net/"] > img, :root a[href^="https://tatrck.com/"], :root a[href^="https://click.candyoffers.com/"], :root [href^="https://zstacklife.com/"] img, :root a[href^="https://t.aslnk.link/"], :root a[href^="https://t.adating.link/"], :root a[href^="https://land.brazzersnetwork.com/landing/"], :root a[href^="https://t.acam.link/"], :root a[href*="//daichoho.com/"], :root a[href^="https://syndication.optimizesrv.com/"], :root a[href^="https://go.trackitalltheway.com/"], :root [href^="https://track.fiverr.com/visit/"] > img, :root a[href^="https://syndication.exoclick.com/"], :root a[href^="https://syndication.dynsrvtbg.com/"], :root div[data-alias="300x250 Ad 1"], :root a[href^="https://syndicate.contentsserved.com/"], :root a[href^="https://svb-analytics.trackerrr.com/"], :root a[href^="https://ad.doubleclick.net/"], :root a[href^="https://static.fleshlight.com/images/banners/"], :root a[href^="https://slkmis.com/"], :root bottomadblock, :root a[href^="https://s.zlinkd.com/"], :root a[href^="https://s.zlink3.com/"], :root a[href^="https://www.mrskin.com/account/"], :root a[href^="https://s.optzsrv.com/"], :root a[href^="https://random-affiliate.atimaze.com/"], :root #kt_player > div[style$="display: block;"][style*="inset: 0px;"], :root a[href^="https://quotationfirearmrevision.com/"], :root a[href^="https://pubads.g.doubleclick.net/"], :root a[href^="https://ak.oalsauwy.net/"], :root a[href^="https://softwa.cfd/"], :root a[href^="https://play1ad.shop/"], :root a[href^="https://prf.hn/click/"][href*="/camref:"] > img, :root a[href^="https://www.dating-finder.com/?ai_d="], :root a[href^="https://serve.awmdelivery.com/"], :root a[href^="https://prf.hn/click/"][href*="/adref:"] > img, :root app-ad, :root [href^="https://ap.octopuspop.com/click/"] > img, :root a[href^="https://postback1win.com/"], :root a[href^="https://mmwebhandler.aff-online.com/"], :root a[href^="https://www.bet365.com/"][href*="affiliate="], :root a[href^="https://pb-track.com/"], :root a[href^="https://pb-front.com/"], :root a[href^="https://paid.outbrain.com/network/redir?"], :root a[href^="https://streamate.com/landing/click/"], :root div[class^="Adstyled__AdWrapper-"], :root a[href^="https://startgaming.net/tienda/" i], :root a[href^="https://osfultrbriolenai.info/"], :root a[href^="https://upsups.click/"], :root a[href^="https://ndt5.net/"], :root a[href^="http://eighteenderived.com/"], :root a[href^="https://natour.naughtyamerica.com/track/"], :root a[href^="https://mediaserver.entainpartners.com/renderBanner.do?"], :root a[href^="https://m.do.co/c/"] > img, :root .nya-slot[style], :root a[href^="https://a.bestcontentweb.top/"], :root a[href^="https://lobimax.com/"], :root a[href^="https://lead1.pl/"], :root a[href^="https://landing.brazzersnetwork.com/"], :root a[href^="https://join.virtuallust3d.com/"], :root a[href^="https://kiksajex.com/"], :root a[href^="https://juicyads.in/"], :root a[href^="https://snowdayonline.xyz/"], :root a[href^="https://mediaserver.gvcaffiliates.com/renderBanner.do?"], :root a[href^="https://join.dreamsexworld.com/"], :root a[href^="https://jaxofuna.com/"], :root a[href^="https://itubego.com/video-downloader/?affid="], :root a[href^="https://italarizege.xyz/"], :root a[href^="https://iqbroker.com/"][href*="?aff="], :root a[href^="https://hot-growngames.life/"], :root a[href^="https://golinks.work/"], :root a[href^="https://go.xxxvjmp.com/"], :root [class^="tile-picker__CitrusBannerContainer-sc-"], :root a[href^="https://go.xxxiijmp.com"], :root a[href^="https://go.xtbaffiliates.com/"], :root .OUTBRAIN[data-widget-id^="FMS_REELD_"], :root [data-role="tile-ads-module"], :root a[href^="https://go.xlviirdr.com"], :root a[href^="https://go.xlviiirdr.com"], :root a[href^="https://ismlks.com/"], :root [href^="https://www.mypillow.com/"] > img, :root a[href^="https://go.xlirdr.com"], :root [data-css-class="dfp-inarticle"], :root a[href^="https://l.hyenadata.com/"], :root a[href^="https://go.tmrjmp.com"], :root a[href^="https://zirdough.net/"], :root a[href^="https://s.deltraff.com/"], :root a[href^="https://go.markets.com/visit/?bta="], :root a[href^="https://billing.purevpn.com/aff.php"] > img, :root a[href^="https://go.hpyrdr.com/"], :root a[href^="https://lijavaxa.com/"], :root a[href^="https://go.goaserv.com/"], :root a[href^="https://t.hrtye.com/"], :root a[href^="https://go.etoro.com/"] > img, :root a[href^="https://go.dmzjmp.com"], :root div[class^="Display_displayAd"], :root a[href^="https://www.bang.com/?aff="], :root #mgb-container > #mgb, :root a[href^="https://go.admjmp.com"], :root a[href^="https://get.surfshark.net/aff_c?"][href*="&aff_id="] > img, :root a[href^="https://www.adskeeper.com"], :root a[data-redirect^="https://paid.outbrain.com/network/redir?"], :root [href^="https://clicks.affstrack.com/"] > img, :root a[href^="https://ak.hauchiwu.com/"], :root a[href^="https://engine.phn.doublepimp.com/"], :root a[href^="https://engine.blueistheneworanges.com/"], :root a[href^="https://drumskilxoa.click/"], :root a[href^="https://dl-protect.net/"], :root a[href^="https://rixofa.com/"], :root #ads[style^="position: absolute; z-index: 30; width: 100%; height"], :root a[href^="https://disobediencecalculatormaiden.com/"], :root a[href*=".foxqck.com/"], :root a[href^="https://ctosrd.com/"], :root div[id*="ScriptRoot"]:not(.eyeo), :root a[href^="https://clixtrac.com/"], :root [href^="https://noqreport.com/"] > img, :root a[href^="https://clicks.pipaffiliates.com/"], :root a[href^="https://datewhisper.life/"], :root a[href^="https://get-link.xyz/"], :root a[href^="https://click.linksynergy.com/fs-bin/"] > img, :root a[href^="https://combodef.com/"], :root a[href^="https://click.hoolig.app/"], :root a[href^="https://track.totalav.com/"], :root a[href^="https://ctrdwm.com/"], :root img[src^="https://images.purevpnaffiliates.com"], :root a[href^="https://porntubemate.com/"], :root a[href^="https://clickadilla.com/"], :root a[href^="https://click.dtiserv2.com/"], :root a[href^="https://go.xlvirdr.com"], :root a[href^="http://www.iyalc.com/"], :root a[href^="https://claring-loccelkin.com/"], :root a[href^="https://s.ma3ion.com/"], :root a[href^="https://cams.imagetwist.com/in/?track="], :root a[href^="https://bongacams2.com/track?"], :root a[href^="https://t.ajrkm1.com/"], :root [href="https://masstortfinancing.com"] img, :root a[href^="https://bongacams10.com/track?"], :root a[href^="https://www.sheetmusicplus.com/"][href*="?aff_id="], :root a[href^="https://bngpt.com/"], :root a[href^="https://black77854.com/"], :root a[href^="https://banners.livepartners.com/"], :root a[href^="http://revolvemockerycopper.com/"], :root a[href^="https://awptjmp.com/"], :root a[href^="https://join.sexworld3d.com/track/"], :root a[href^="https://intenseaffiliates.com/redirect/"], :root a[href^="https://aweptjmp.com/"], :root [class^="s2nPlayer"], :root a[href^="https://chaturbate.jjgirls.com/?track="], :root a[href^="https://ausoafab.net/"], :root a[href^="https://activate-game.com/"], :root .scroll-fixable.rail-right > .deals-rail, :root [data-wpas-zoneid], :root a[href^="https://a2.adform.net/"], :root a[href^="https://auesk.cfd/"], :root a[href^="https://ak.psaltauw.net/"], :root a[href^="https://adclick.g.doubleclick.net/"], :root a[href^="https://bc.game/"], :root a[href^="https://a.bestcontentoperation.top/"], :root a[href^="https://adultfriendfinder.com/go/"], :root a[href^="https://ads.planetwin365affiliate.com/"], :root a[href^="https://ads.leovegas.com/"], :root a[href^="https://a.candyai.love/"], :root a[href^="https://playnano.online/offerwalls/?ref="], :root a[href^="https://a.adtng.com/"], :root [data-m-ad-id], :root a[href^="https://a-ads.com/"], :root div[id^="rc-widget-"], :root a[href^="http://eslp34af.click/"], :root a[href^="https://turnstileunavailablesite.com/"], :root a[href^="https://chaturbate.com/in/?"], :root a[href^="https://prf.hn/click/"][href*="/creativeref:"] > img, :root a[href*="&maxads="], :root a[href^="http://www.adultempire.com/unlimited/promo?"][href*="&partner_id="], :root a[href^="https://1betandgonow.com/"], :root a[href^="https://eergortu.net/"], :root div[id^="optidigital-adslot"], :root a[href^="https://123-stream.org/"], :root a[href^="http://www.friendlyduck.com/AF_"], :root a[href^="https://allhost.shop/aff.php?"], :root [data-dynamic-ads], :root a[href^="http://vnte9urn.click/"], :root a[href^="https://getvideoz.click/"], :root a[href^="http://troopsassistedstupidity.com/"], :root a[href^="http://trk.globwo.online/"], :root a-ad, :root a[href^="https://offhandpump.com/"], :root a[href^="http://stickingrepute.com/"], :root #slashboxes > .deals-rail, :root [data-rc-widget="data-rc-widget"], :root a[href^="http://premonitioninventdisagree.com/"], :root a[href^="http://naggingirresponsible.com/"], :root a[href^="https://in.rabbtrk.com/"], :root a[href^="http://www.h4trck.com/"], :root a[href^="https://81ac.xyz/"], :root a[href^="http://guestblackmail.com/"], :root a[href^="http://cam4com.go2cloud.org/aff_c?"], :root a[href^="https://ads.betfair.com/redirect.aspx?"], :root [href^="https://www.mypatriotsupply.com/"] > img, :root a[href^="https://trk.softonixs.xyz/"], :root a[href^="https://sexynearme.com/"], :root a[href^="https://myclick-2.com/"], :root a[href^="http://dragnag.com/"], :root a[href^="http://dragfault.com/"], :root [id^="div-gpt-ad"], :root .ob_container .item-container-obpd, :root div[id^="yandex_ad"], :root a[href^="https://www8.smartadserver.com/"], :root a[href^="https://pb-imc.com/"], :root a[href^="http://deskfrontfreely.com/"], :root [data-advadstrackid], :root a[href^="http://muzzlematrix.com/"], :root a[href^="https://track.adform.net/"], :root a[href^="http://avthelkp.net/"], :root a[href^="https://a.medfoodhome.com/"], :root a[href^="https://engine.flixtrial.com/"], :root [data-type="ad-vertical"], :root [data-taboola-options], :root a[href^="http://annulmentequitycereals.com/"], :root a[href^="//startgaming.net/tienda/" i], :root a[href^="https://www.get-express-vpn.com/offer/"], :root a[href^="https://s.cant3am.com/"], :root a[href^="//s.st1net.com/splash.php"], :root a[href^="https://join.virtualtaboo.com/track/"], :root [id^="ad_sky"], :root a[href^="http://coefficienttolerategravel.com/"], :root a[href^="https://a.medfoodsafety.com/"], :root a[href^="//go.eabids.com/"], :root a[href^="//ejitsirdosha.net/"], :root a[href^=" https://www.friendlyduck.com/AF_"], :root a[href*="/jump/next.php?r="], :root [href^="https://ilovemyfreedoms.com/landing-"], :root a[href^="https://go.nordvpn.net/aff"] > img, :root .\[\&_\.gdprAdTransparencyCogWheelButton\]\:\!pjra-z-\[5\], :root [href^="http://clicks.totemcash.com/"], :root a[href^="https://ad.zanox.com/ppc/"] > img, :root a[href^="https://lone-pack.com/"], :root [data-d-ad-id], :root a[href*=".engine.adglare.net/"], :root a[href^="https://t.ajrkm3.com/"], :root [href^="https://aads.com/campaigns/"], :root a[href^="//stighoazon.com/"], :root [href^="https://www.profitablegatecpm.com/"], :root div[id^="lazyad-"], :root a[href^="http://com-1.pro/"], :root a[href*=".cfm?domain="][href*="&fp="], :root [data-ad-name], :root a[href^="https://loboclick.com/"], :root a[data-url^="https://vulpix.bet/?ref="], :root a[href^="https://ab.advertiserurl.com/aff/"], :root a[data-oburl^="https://paid.outbrain.com/network/redir?"], :root a[href^="https://go.xlivrdr.com"], :root [onclick^="location.href='https://1337x.vpnonly.site/"], :root [name^="google_ads_iframe"], :root [id^="section-ad-banner"], :root a[href^="https://www.goldenfrog.com/vyprvpn?offer_id="][href*="&aff_id="], :root a[href*="//jjgirls.com/sex/Chaturbate"], :root [id^="ad-wrap-"], :root [href^="https://zone.gotrackier.com/"], :root a[href^="http://sarcasmadvisor.com/"], :root [href^="https://www.restoro.com/"], :root [href^="https://www.targetingpartner.com/"], :root .section-subheader > .section-hotel-prices-header, :root [href^="https://www.hostg.xyz/"] > img, :root a[href^="http://adultfriendfinder.com/go/"], :root a[href^="https://fastestvpn.com/lifetime-special-deal?a_aid="], :root a[href^="https://tour.mrskin.com/"], :root [href^="https://www.brighteonstore.com/products/"] img, :root [data-ad-width], :root [data-block-type="ad"], :root a[href^="https://baipahanoop.net/"], :root [href^="https://v.investologic.co.uk/"], :root div[id^="div-ads-"], :root [href^="https://rapidgator.net/article/premium/ref/"], :root [href^="https://join.girlsoutwest.com/"], :root a[href^="https://track.aftrk3.com/"], :root [href^="https://join3.bannedsextapes.com"], :root a[href^="https://bodelen.com/"], :root a[href*=".g2afse.com/"], :root div[id^="adngin-"], :root [data-rc-widget], :root span[data-ez-ph-id], :root [href^="https://track.aftrk1.com/"], :root [href^="https://join.playboyplus.com/track/"], :root a[href^="https://go.xxxijmp.com"], :root [href^="https://istlnkcl.com/"], :root [href^="https://go.xlrdr.com"], :root a[href^="https://tm-offers.gamingadult.com/"], :root [href^="https://charmingdatings.life/"], :root [href^="https://glersakr.com/"], :root a[href^="https://a.bestcontentfood.top/"], :root [href^="https://cpa.10kfreesilver.com/"], :root [data-id^="div-gpt-ad"], :root a[href^="https://tracker.loropartners.com/"], :root [href^="https://awbbjmp.com/"], :root a[data-href^="http://ads.trafficjunky.net/"], :root a[href*=".adsrv.eacdn.com/"], :root [href^="https://antiagingbed.com/discount/"] > img, :root a[href^="http://partners.etoro.com/"], :root a[href^="https://www.friendlyduck.com/AF_"], :root [href^="https://ad1.adfarm1.adition.com/"], :root a[href^="https://bngprm.com/"], :root [href^="https://shiftnetwork.infusionsoft.com/go/"] > img, :root a[href^="https://go.strpjmp.com/"], :root a[href^="https://go.bushheel.com/"], :root a[href^="https://ctjdwm.com/"], :root a[href^="https://camfapr.com/landing/click/"], :root div[data-ad-wrapper], :root .gnt_em_vp_c[data-g-s="vp_dk"], :root [href="//sexcams.plus/"], :root [href^="http://www.mypillow.com/"] > img, :root #kt_player > a[target="_blank"], :root a[href^="http://bongacams.com/track?"], :root [href^="http://mypillow.com/"] > img, :root [href="https://ourgoldguy.com/contact/"] img, :root #teaser3[style="width: 100%;text-align: center;display: scroll;position:fixed;bottom: 0;margin: 0 auto;z-index: 103;"], :root [href="https://www.masstortfinancing.com/"] > img, :root a[href^="https://go.rmhfrtnd.com/"], :root [href="https://jdrucker.com/gold"] > img, :root a[href^="https://track.1234sd123.com/"], :root zeus-ad, :root [data-testid="prism-ad-wrapper"], :root [href^="https://ad.admitad.com/"], :root [href^="https://mypillow.com/"] > img, :root [data-testid="ad_testID"], :root [href^="https://optimizedelite.com/"] > img, :root [data-name="adaptiveConstructorAd"], :root a[href^="https://go.cmtaffiliates.com/"], :root [data-testid="adBanner-wrapper"], :root [href^="https://mylead.global/stl/"] > img, :root [href^="https://mypatriotsupply.com/"] > img, :root a[href^="https://go.hpyjmp.com"], :root [href^="https://mystore.com/"] > img, :root citrus-ad-wrapper, :root a[onmousedown^="this.href='https://paid.outbrain.com/network/redir?"][target="_blank"], :root a[href^="https://go.grinsbest.com/"], :root a[href^="https://vo2.qrlsx.com/"], :root [href^="https://www.avantlink.com/click.php"] img, :root [href^="https://wct.link/click?"], :root div[data-adunit], :root app-large-ad, :root [href^="https://turtlebids.irauctions.com/"] img, :root div[class*="publift-widget-"]:has(.fuse-slot-sticky), :root a[href^="https://witnessjacket.com/"], :root [data-mobile-ad-id], :root a[href^="https://fc.lc/ref/"], :root [data-adshim], :root topadblock, :root a[href^="//s.zlinkd.com/"], :root [class^="amp-ad-"], :root a[href^="http://handgripvegetationhols.com/"], :root a[href^="https://bs.serving-sys.com"], :root a[href^="https://gamingadlt.com/?offer="], :root [data-desktop-ad-id], :root a[href^="https://www.liquidfire.mobi/"], :root .grid > .container > #aside-promotion, :root DFP-AD, :root [id^="ad_slider"], :root [data-adbridg-ad-class], :root #teaser3[style^="width:autopx;"], :root [data-adblockkey], :root [onclick*="content.ad/"], :root [data-ad-manager-id], :root AMP-AD, :root [data-ad-cls], :root [data-ez-name], :root a[href^="https://go.mnaspm.com/"], :root a[href^="https://service.bv-aff-trx.com/"], :root a[href^="https://6-partner.com/"], :root a[href^="https://traffdaq.com/"], :root [href^="https://www.cloudways.com/en/?id"], :root #teaser1[style^="width:autopx;"], :root [class^="div-gpt-ad"], :root a[href^="http://tc.tradetracker.net/"] > img, :root [href^="https://affiliate.fastcomet.com/"] > img, :root [class^="adDisplay-module"], :root [data-freestar-ad][id], :root AD-SLOT, :root a[href^="https://www.googleadservices.com/pagead/aclk?"] > img, :root [data-ad-module], :root a[href^="https://go.skinstrip.net"][href*="?campaignId="], :root #teaser2[style^="width:autopx;"], :root a[href^="https://ngineet.cfd/"], :root [data-revive-zoneid], :root a[href^="https://losingoldfry.com/"], :root div[id^="div-gpt-"], :root a[href^="https://gml-grp.com/"], :root .ob_dual_right > .ob_ads_header ~ .odb_div, :root #target.pk-page-ready #pk-status-message, :root app-advertisement, :root a[href^="https://getmatchedlocally.com/"], :root a[href^="https://clickins.slixa.com/"], :root a[href^="https://cam4com.go2cloud.org/"], :root a[href^="http://li.blogtrottr.com/click?"], :root a[href^="https://t.ajump1.com/"], :root a[href^="https://go.xxxjmp.com"], :root #leader-companion > a[href] { display: none !important; }</style><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="core/first" src="https://www.xplore-dna.net/lib/requirejs.php/1733752523/core/first.js"></script><script type="text/x-mathjax-config;executed=true">
-MathJax.Hub.Config({
-    config: ["Accessible.js", "Safe.js"],
-    errorSettings: { message: ["!"] },
-    skipStartupTypeset: true,
-    messageStyle: "none"
-});
-</script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="core_form/events" src="https://www.xplore-dna.net/lib/requirejs.php/1733752523/core_form/events.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="core/event" src="https://www.xplore-dna.net/lib/requirejs.php/1733752523/core/event.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="jquery" src="https://www.xplore-dna.net/lib/javascript.php/1733752523/lib/jquery/jquery-3.6.1.min.js"></script><script type="text/javascript">
-                require(['core_courseformat/local/courseindex/cm'], function(component) {
-                    component.init('0-course-index-cm-14271');
-                });
-                ;
-
-    require(['core_courseformat/local/courseindex/section'], function(component) {
-        component.init('0-course-index-section-7088');
-    });
-    ;
-
-                require(['core_courseformat/local/courseindex/cm'], function(component) {
-                    component.init('0-course-index-cm-14272');
-                });
-                ;
-
-                require(['core_courseformat/local/courseindex/cm'], function(component) {
-                    component.init('0-course-index-cm-14273');
-                });
-                ;
-
-                require(['core_courseformat/local/courseindex/cm'], function(component) {
-                    component.init('0-course-index-cm-14275');
-                });
-                ;
-
-                require(['core_courseformat/local/courseindex/cm'], function(component) {
-                    component.init('0-course-index-cm-14276');
-                });
-                ;
-
-                require(['core_courseformat/local/courseindex/cm'], function(component) {
-                    component.init('0-course-index-cm-14277');
-                });
-                ;
-
-                require(['core_courseformat/local/courseindex/cm'], function(component) {
-                    component.init('0-course-index-cm-14278');
-                });
-                ;
-
-                require(['core_courseformat/local/courseindex/cm'], function(component) {
-                    component.init('0-course-index-cm-14279');
-                });
-                ;
-
-    require(['core_courseformat/local/courseindex/section'], function(component) {
-        component.init('0-course-index-section-7089');
-    });
-    ;
-
-                require(['core_courseformat/local/courseindex/cm'], function(component) {
-                    component.init('0-course-index-cm-14937');
-                });
-                ;
-
-                require(['core_courseformat/local/courseindex/cm'], function(component) {
-                    component.init('0-course-index-cm-14681');
-                });
-                ;
-
-                require(['core_courseformat/local/courseindex/cm'], function(component) {
-                    component.init('0-course-index-cm-14680');
-                });
-                ;
-
-                require(['core_courseformat/local/courseindex/cm'], function(component) {
-                    component.init('0-course-index-cm-14704');
-                });
-                ;
-
-                require(['core_courseformat/local/courseindex/cm'], function(component) {
-                    component.init('0-course-index-cm-15275');
-                });
-                ;
-
-    require(['core_courseformat/local/courseindex/section'], function(component) {
-        component.init('0-course-index-section-7090');
-    });
-    ;
-
-                require(['core_courseformat/local/courseindex/cm'], function(component) {
-                    component.init('0-course-index-cm-14708');
-                });
-                ;
-
-                require(['core_courseformat/local/courseindex/cm'], function(component) {
-                    component.init('0-course-index-cm-14938');
-                });
-                ;
-
-                require(['core_courseformat/local/courseindex/cm'], function(component) {
-                    component.init('0-course-index-cm-14707');
-                });
-                ;
-
-    require(['core_courseformat/local/courseindex/section'], function(component) {
-        component.init('0-course-index-section-7091');
-    });
-    ;
-
-                require(['core_courseformat/local/courseindex/cm'], function(component) {
-                    component.init('0-course-index-cm-14709');
-                });
-                ;
-
-    require(['core_courseformat/local/courseindex/section'], function(component) {
-        component.init('0-course-index-section-7092');
-    });
-    ;
-
-    require(['core_courseformat/local/courseindex/section'], function(component) {
-        component.init('0-course-index-section-7093');
-    });
-    ;
-
-                require(['core_courseformat/local/courseindex/cm'], function(component) {
-                    component.init('0-course-index-cm-14280');
-                });
-                ;
-
-    require(['core_courseformat/local/courseindex/section'], function(component) {
-        component.init('0-course-index-section-7094');
-    });
-    ;
-
-require(['core_courseformat/local/courseindex/courseindex'], function(component) {
-    component.init('0-course-index');
-});
-</script><style type="text/css">.MathJax_Hover_Frame {border-radius: .25em; -webkit-border-radius: .25em; -moz-border-radius: .25em; -khtml-border-radius: .25em; box-shadow: 0px 0px 15px #83A; -webkit-box-shadow: 0px 0px 15px #83A; -moz-box-shadow: 0px 0px 15px #83A; -khtml-box-shadow: 0px 0px 15px #83A; border: 1px solid #A6D ! important; display: inline-block; position: absolute}
-.MathJax_Menu_Button .MathJax_Hover_Arrow {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px; -khtml-border-radius: 4px; font-family: 'Courier New',Courier; font-size: 9px; color: #F0F0F0}
-.MathJax_Menu_Button .MathJax_Hover_Arrow span {display: block; background-color: #AAA; border: 1px solid; border-radius: 3px; line-height: 0; padding: 4px}
-.MathJax_Hover_Arrow:hover {color: white!important; border: 2px solid #CCC!important}
-.MathJax_Hover_Arrow:hover span {background-color: #CCC!important}
-</style><style type="text/css">#MathJax_About {position: fixed; left: 50%; width: auto; text-align: center; border: 3px outset; padding: 1em 2em; background-color: #DDDDDD; color: black; cursor: default; font-family: message-box; font-size: 120%; font-style: normal; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 15px; -webkit-border-radius: 15px; -moz-border-radius: 15px; -khtml-border-radius: 15px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
-#MathJax_About.MathJax_MousePost {outline: none}
-.MathJax_Menu {position: absolute; background-color: white; color: black; width: auto; padding: 2px; border: 1px solid #CCCCCC; margin: 0; cursor: default; font: menu; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
-.MathJax_MenuItem {padding: 2px 2em; background: transparent}
-.MathJax_MenuArrow {position: absolute; right: .5em; padding-top: .25em; color: #666666; font-size: .75em}
-.MathJax_MenuActive .MathJax_MenuArrow {color: white}
-.MathJax_MenuArrow.RTL {left: .5em; right: auto}
-.MathJax_MenuCheck {position: absolute; left: .7em}
-.MathJax_MenuCheck.RTL {right: .7em; left: auto}
-.MathJax_MenuRadioCheck {position: absolute; left: 1em}
-.MathJax_MenuRadioCheck.RTL {right: 1em; left: auto}
-.MathJax_MenuLabel {padding: 2px 2em 4px 1.33em; font-style: italic}
-.MathJax_MenuRule {border-top: 1px solid #CCCCCC; margin: 4px 1px 0px}
-.MathJax_MenuDisabled {color: GrayText}
-.MathJax_MenuActive {background-color: Highlight; color: HighlightText}
-.MathJax_MenuDisabled:focus, .MathJax_MenuLabel:focus {background-color: #E8E8E8}
-.MathJax_ContextMenu:focus {outline: none}
-.MathJax_ContextMenu .MathJax_MenuItem:focus {outline: none}
-#MathJax_AboutClose {top: .2em; right: .2em}
-.MathJax_Menu .MathJax_MenuClose {top: -10px; left: -10px}
-.MathJax_MenuClose {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; font-family: 'Courier New',Courier; font-size: 24px; color: #F0F0F0}
-.MathJax_MenuClose span {display: block; background-color: #AAA; border: 1.5px solid; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; line-height: 0; padding: 8px 0 6px}
-.MathJax_MenuClose:hover {color: white!important; border: 2px solid #CCC!important}
-.MathJax_MenuClose:hover span {background-color: #CCC!important}
-.MathJax_MenuClose:hover:focus {outline: none}
-</style><style type="text/css">.MathJax_Preview .MJXf-math {color: inherit!important}
-</style><style type="text/css" class="">.MJX_Assistive_MathML {position: absolute!important; top: 0; left: 0; clip: rect(1px, 1px, 1px, 1px); padding: 1px 0 0 0!important; border: 0!important; height: 1px!important; width: 1px!important; overflow: hidden!important; display: block!important; -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none}
-.MJX_Assistive_MathML.MJX_Assistive_MathML_Block {width: 100%!important}
-</style><style type="text/css" class="">#MathJax_Zoom {position: absolute; background-color: #F0F0F0; overflow: auto; display: block; z-index: 301; padding: .5em; border: 1px solid black; margin: 0; font-weight: normal; font-style: normal; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; -webkit-box-sizing: content-box; -moz-box-sizing: content-box; box-sizing: content-box; box-shadow: 5px 5px 15px #AAAAAA; -webkit-box-shadow: 5px 5px 15px #AAAAAA; -moz-box-shadow: 5px 5px 15px #AAAAAA; -khtml-box-shadow: 5px 5px 15px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
-#MathJax_ZoomOverlay {position: absolute; left: 0; top: 0; z-index: 300; display: inline-block; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
-#MathJax_ZoomFrame {position: relative; display: inline-block; height: 0; width: 0}
-#MathJax_ZoomEventTrap {position: absolute; left: 0; top: 0; z-index: 302; display: inline-block; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
-</style><style type="text/css" class="">.MathJax_Preview {color: #888; display: contents}
-#MathJax_Message {position: fixed; left: 1em; bottom: 1.5em; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
-#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
-.MathJax_Error {color: #CC0000; font-style: italic}
-</style><style type="text/css" class="">.MJXp-script {font-size: .8em}
-.MJXp-right {-webkit-transform-origin: right; -moz-transform-origin: right; -ms-transform-origin: right; -o-transform-origin: right; transform-origin: right}
-.MJXp-bold {font-weight: bold}
-.MJXp-italic {font-style: italic}
-.MJXp-scr {font-family: MathJax_Script,'Times New Roman',Times,STIXGeneral,serif}
-.MJXp-frak {font-family: MathJax_Fraktur,'Times New Roman',Times,STIXGeneral,serif}
-.MJXp-sf {font-family: MathJax_SansSerif,'Times New Roman',Times,STIXGeneral,serif}
-.MJXp-cal {font-family: MathJax_Caligraphic,'Times New Roman',Times,STIXGeneral,serif}
-.MJXp-mono {font-family: MathJax_Typewriter,'Times New Roman',Times,STIXGeneral,serif}
-.MJXp-largeop {font-size: 150%}
-.MJXp-largeop.MJXp-int {vertical-align: -.2em}
-.MJXp-math {display: inline-block; line-height: 1.2; text-indent: 0; font-family: 'Times New Roman',Times,STIXGeneral,serif; white-space: nowrap; border-collapse: collapse}
-.MJXp-display {display: block; text-align: center; margin: 1em 0}
-.MJXp-math span {display: inline-block}
-.MJXp-box {display: block!important; text-align: center}
-.MJXp-box:after {content: " "}
-.MJXp-rule {display: block!important; margin-top: .1em}
-.MJXp-char {display: block!important}
-.MJXp-mo {margin: 0 .15em}
-.MJXp-mfrac {margin: 0 .125em; vertical-align: .25em}
-.MJXp-denom {display: inline-table!important; width: 100%}
-.MJXp-denom > * {display: table-row!important}
-.MJXp-surd {vertical-align: top}
-.MJXp-surd > * {display: block!important}
-.MJXp-script-box > *  {display: table!important; height: 50%}
-.MJXp-script-box > * > * {display: table-cell!important; vertical-align: top}
-.MJXp-script-box > *:last-child > * {vertical-align: bottom}
-.MJXp-script-box > * > * > * {display: block!important}
-.MJXp-mphantom {visibility: hidden}
-.MJXp-munderover, .MJXp-munder {display: inline-table!important}
-.MJXp-over {display: inline-block!important; text-align: center}
-.MJXp-over > * {display: block!important}
-.MJXp-munderover > *, .MJXp-munder > * {display: table-row!important}
-.MJXp-mtable {vertical-align: .25em; margin: 0 .125em}
-.MJXp-mtable > * {display: inline-table!important; vertical-align: middle}
-.MJXp-mtr {display: table-row!important}
-.MJXp-mtd {display: table-cell!important; text-align: center; padding: .5em 0 0 .5em}
-.MJXp-mtr > .MJXp-mtd:first-child {padding-left: 0}
-.MJXp-mtr:first-child > .MJXp-mtd {padding-top: 0}
-.MJXp-mlabeledtr {display: table-row!important}
-.MJXp-mlabeledtr > .MJXp-mtd:first-child {padding-left: 0}
-.MJXp-mlabeledtr:first-child > .MJXp-mtd {padding-top: 0}
-.MJXp-merror {background-color: #FFFF88; color: #CC0000; border: 1px solid #CC0000; padding: 1px 3px; font-style: normal; font-size: 90%}
-.MJXp-scale0 {-webkit-transform: scaleX(.0); -moz-transform: scaleX(.0); -ms-transform: scaleX(.0); -o-transform: scaleX(.0); transform: scaleX(.0)}
-.MJXp-scale1 {-webkit-transform: scaleX(.1); -moz-transform: scaleX(.1); -ms-transform: scaleX(.1); -o-transform: scaleX(.1); transform: scaleX(.1)}
-.MJXp-scale2 {-webkit-transform: scaleX(.2); -moz-transform: scaleX(.2); -ms-transform: scaleX(.2); -o-transform: scaleX(.2); transform: scaleX(.2)}
-.MJXp-scale3 {-webkit-transform: scaleX(.3); -moz-transform: scaleX(.3); -ms-transform: scaleX(.3); -o-transform: scaleX(.3); transform: scaleX(.3)}
-.MJXp-scale4 {-webkit-transform: scaleX(.4); -moz-transform: scaleX(.4); -ms-transform: scaleX(.4); -o-transform: scaleX(.4); transform: scaleX(.4)}
-.MJXp-scale5 {-webkit-transform: scaleX(.5); -moz-transform: scaleX(.5); -ms-transform: scaleX(.5); -o-transform: scaleX(.5); transform: scaleX(.5)}
-.MJXp-scale6 {-webkit-transform: scaleX(.6); -moz-transform: scaleX(.6); -ms-transform: scaleX(.6); -o-transform: scaleX(.6); transform: scaleX(.6)}
-.MJXp-scale7 {-webkit-transform: scaleX(.7); -moz-transform: scaleX(.7); -ms-transform: scaleX(.7); -o-transform: scaleX(.7); transform: scaleX(.7)}
-.MJXp-scale8 {-webkit-transform: scaleX(.8); -moz-transform: scaleX(.8); -ms-transform: scaleX(.8); -o-transform: scaleX(.8); transform: scaleX(.8)}
-.MJXp-scale9 {-webkit-transform: scaleX(.9); -moz-transform: scaleX(.9); -ms-transform: scaleX(.9); -o-transform: scaleX(.9); transform: scaleX(.9)}
-.MathJax_PHTML .noError {vertical-align: ; font-size: 90%; text-align: left; color: black; padding: 1px 3px; border: 1px solid}
-</style><style id="__web-inspector-hide-shortcut-style__" class="">
-.__web-inspector-hide-shortcut__, .__web-inspector-hide-shortcut__ *, .__web-inspector-hidebefore-shortcut__::before, .__web-inspector-hideafter-shortcut__::after
-{
-    visibility: hidden !important;
-}
-</style></head>
-<body>
-    <li id="section-2" class="section course-section main  clearfix
-                             
-                            " data-sectionid="2" data-sectionreturnid="0" data-for="section" data-id="7090" data-number="2" data-indexed="true">
-                    <div class="course-section-header d-flex" data-for="section_title" data-id="7090" data-number="2">
-                                
-                                        <div class="d-flex align-items-start position-relative">
-                                            <a>
-                                            <span class="expanded-icon icon-no-margin p-2" title="Einklappen">
-                                                <i class="icon fa fa-chevron-down fa-fw __web-inspector-hide-shortcut__" aria-hidden="true"></i>
-                                            </span>
-                                            
-                                            </a>
-                                            <style>
-    h3:hover{
-        cursor: default;
-    }
-</style><h3 class="sectionname course-content-item d-flex align-self-stretch align-items-center mb-0" id="sectionid-7090-title" data-for="section_title" data-id="7090" data-number="2">
-                                                Temperaturmessdaten auf einer SD-Karte speichern
-                                            </h3>
-                                        </div>
-                            <div data-region="sectionbadges" class="sectionbadges d-flex align-items-center">
-                            </div>
-                            </div>
-                            <div id="coursecontentcollapse2" class="content 
-                                    course-content-item-content collapse show
-                                ">
-                                <div class=" my-3" data-for="sectioninfo">
-                                        <div class="section_availability course-description-item">
-                                        </div>
-                            </div>
-                                    <ul class="section m-0 p-0 img-text  d-block " data-for="cmlist">
-                                                <li class="activity activity-wrapper page modtype_page  " id="module-14937" data-for="cmitem" data-id="14937" data-indexed="true">
-                                                        <div class="activity-item " data-activityname="Vorbereitung">
-
-                                                                <div class="activity-basis d-flex align-items-center">
-                                                                    <div class="d-flex flex-column flex-md-row w-100 align-self-start">
-                                                                                    <div class="activity-instance d-flex flex-column">
-                                                                                        <div class="activitytitle media  modtype_page position-relative align-self-start">
-                                                                                            <div class="activityiconcontainer content courseicon align-self-start mr-3">
-                                                                                                <img src="https://www.xplore-dna.net/theme/image.php/boost/page/1733774065/monologo" class="activityicon " alt="page icon">
-                                                                                            </div>
-                                                                                            <div class="media-body align-self-center">
-                                                                                                <div class="activityname">
-                                                                                                                <a href="https://www.xplore-dna.net/mod/page/view.php?id=14937" class=" aalink stretched-link" onclick="">        <span class="instancename">Vorbereitung <span class="accesshide "> Textseite</span></span>    </a>
-                                                                                                            
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </div>
-                                                                
-                                                                            <div class="activity-info mt-1 mt-md-0">
-                                                                                    <div data-region="activity-information" data-activityname="Vorbereitung" class="activity-information">
-                                                                                    </div>
-                                                                            </div>
-                                                                    </div>
-                                                                
-                                                                </div>
-                                                                
-                                                                <div class="description">
-                                                                </div>
-                                                        </div>
-                                                </li>
-                                                <li class="activity activity-wrapper page modtype_page  " id="module-14681" data-for="cmitem" data-id="14681" data-indexed="true">
-                                                        <div class="activity-item " data-activityname="Aufbau">
-
-                                                                <div class="activity-basis d-flex align-items-center">
-                                                                    <div class="d-flex flex-column flex-md-row w-100 align-self-start">
-                                                                                    <div class="activity-instance d-flex flex-column">
-                                                                                        <div class="activitytitle media  modtype_page position-relative align-self-start">
-                                                                                            <div class="activityiconcontainer content courseicon align-self-start mr-3">
-                                                                                                <img src="https://www.xplore-dna.net/theme/image.php/boost/page/1733774065/monologo" class="activityicon " alt="page icon">
-                                                                                            </div>
-                                                                                            <div class="media-body align-self-center">
-                                                                                                <div class="activityname">
-                                                                                                                <a href="https://www.xplore-dna.net/mod/page/view.php?id=14681" class=" aalink stretched-link" onclick="">        <span class="instancename">Aufbau <span class="accesshide "> Textseite</span></span>    </a>
-                                                                                                            
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </div>
-                                                                
-                                                                            <div class="activity-info mt-1 mt-md-0">
-                                                                                    <div data-region="activity-information" data-activityname="Aufbau" class="activity-information">
-                                                                                    </div>
-                                                                            </div>
-                                                                    </div>
-                                                                
-                                                                </div>
-                                                                
-                                                                <div class="description">
-                                                                </div>
-                                                        </div>
-                                                </li>
-                                                <li class="activity activity-wrapper page modtype_page  " id="module-14680" data-for="cmitem" data-id="14680" data-indexed="true">
-                                                        <div class="activity-item " data-activityname="ESP32 Code">
-
-                                                                <div class="activity-basis d-flex align-items-center">
-                                                                    <div class="d-flex flex-column flex-md-row w-100 align-self-start">
-                                                                                    <div class="activity-instance d-flex flex-column">
-                                                                                        <div class="activitytitle media  modtype_page position-relative align-self-start">
-                                                                                            <div class="activityiconcontainer content courseicon align-self-start mr-3">
-                                                                                                <img src="https://www.xplore-dna.net/theme/image.php/boost/page/1733774065/monologo" class="activityicon " alt="page icon">
-                                                                                            </div>
-                                                                                            <div class="media-body align-self-center">
-                                                                                                <div class="activityname">
-                                                                                                                <a href="https://www.xplore-dna.net/mod/page/view.php?id=14680" class=" aalink stretched-link" onclick="">        <span class="instancename">ESP32 Code <span class="accesshide "> Textseite</span></span>    </a>
-                                                                                                            
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </div>
-                                                                
-                                                                            <div class="activity-info mt-1 mt-md-0">
-                                                                                    <div data-region="activity-information" data-activityname="ESP32 Code" class="activity-information">
-                                                                                    </div>
-                                                                            </div>
-                                                                    </div>
-                                                                
-                                                                </div>
-                                                                
-                                                                <div class="description">
-                                                                </div>
-                                                        </div>
-                                                </li>
-                                                <li class="activity activity-wrapper page modtype_page  " id="module-14704" data-for="cmitem" data-id="14704" data-indexed="true">
-                                                        <div class="activity-item hiddenactivity" data-activityname="moodle html">
-
-                                                                <div class="activity-basis d-flex align-items-center">
-                                                                    <div class="d-flex flex-column flex-md-row w-100 align-self-start">
-                                                                                    <div class="activity-instance d-flex flex-column">
-                                                                                        <div class="activitytitle media  conditionalhidden modtype_page position-relative align-self-start">
-                                                                                            <div class="activityiconcontainer content courseicon align-self-start mr-3">
-                                                                                                <img src="https://www.xplore-dna.net/theme/image.php/boost/page/1733774065/monologo" class="activityicon " alt="page icon">
-                                                                                            </div>
-                                                                                            <div class="media-body align-self-center">
-                                                                                                <div class="activityname">
-                                                                                                                <a href="https://www.xplore-dna.net/mod/page/view.php?id=14704" class=" conditionalhidden aalink stretched-link" onclick="">        <span class="instancename">moodle html <span class="accesshide "> Textseite</span></span>    </a>
-                                                                                                            
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </div>
-                                                                
-                                                                            <div class="activity-info mt-1 mt-md-0">
-                                                                                    <div data-region="activity-information" data-activityname="moodle html" class="activity-information">
-                                                                                    </div>
-                                                                            </div>
-                                                                    </div>
-                                                                
-                                                                </div>
-                                                                            <div class="my-1 d-flex align-items-center">
-                                                                                <span class="badge badge-pill badge-warning">Für Teilnehmer/innen verborgen</span>
-                                                                            </div>
-                                                                
-                                                                <div class="description">
-                                                                </div>
-                                                        </div>
-                                                </li>
-                                                <li class="activity activity-wrapper page modtype_page  " id="module-15275" data-for="cmitem" data-id="15275" data-indexed="true">
-                                                        <div class="activity-item " data-activityname="...">
-
-                                                                <div class="activity-basis d-flex align-items-center">
-                                                                    <div class="d-flex flex-column flex-md-row w-100 align-self-start">
-                                                                                    <div class="activity-instance d-flex flex-column">
-                                                                                        <div class="activitytitle media  modtype_page position-relative align-self-start">
-                                                                                            <div class="activityiconcontainer content courseicon align-self-start mr-3">
-                                                                                                <img src="https://www.xplore-dna.net/theme/image.php/boost/page/1733774065/monologo" class="activityicon " alt="page icon">
-                                                                                            </div>
-                                                                                            <div class="media-body align-self-center">
-                                                                                                <div class="activityname">
-                                                                                                                <a href="https://www.xplore-dna.net/mod/page/view.php?id=15275" class=" aalink stretched-link" onclick="">        <span class="instancename">... <span class="accesshide "> Textseite</span></span>    </a>
-                                                                                                            
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </div>
-                                                                
-                                                                            <div class="activity-info mt-1 mt-md-0">
-                                                                                    <div data-region="activity-information" data-activityname="..." class="activity-information">
-                                                                                    </div>
-                                                                            </div>
-                                                                    </div>
-                                                                
-                                                                </div>
-                                                                
-                                                                <div class="description">
-                                                                </div>
-                                                        </div>
-                                                </li>
-                                        </ul>
-                            
+<html lang="de">
+    <head>
+        <title>Kurs: T1-Data Base</title>
+        <link rel="shortcut icon" href="https://www.xplore-dna.net/theme/image.php/boost/theme/1733774065/favicon">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta name="keywords" content="moodle, Kurs: T1-Data Base">
+        <link rel="stylesheet" type="text/css" href="https://www.xplore-dna.net/theme/yui_combo.php?rollup/3.17.2/yui-moodlesimple-min.css">
+        <script charset="utf-8" id="yui_3_17_2_1_1734423774460_8" src="https://www.xplore-dna.net/theme/yui_combo.php?m/1733752523/core/event/event-min.js&amp;m/1733752523/filter_mathjaxloader/loader/loader-min.js" async=""></script>
+        <link charset="utf-8" rel="stylesheet" id="yui_3_17_2_1_1734423774460_19" href="https://www.xplore-dna.net/theme/yui_combo.php?3.17.2/cssbutton/cssbutton-min.css">
+        <script charset="utf-8" id="yui_3_17_2_1_1734423774460_20" src="https://www.xplore-dna.net/theme/yui_combo.php?m/1733752523/core/widget/widget-focusafterclose-min.js&amp;3.17.2/plugin/plugin-min.js&amp;m/1733752523/core/lockscroll/lockscroll-min.js&amp;m/1733752523/core/notification/notification-dialogue-min.js&amp;m/1733752523/core/notification/notification-alert-min.js&amp;m/1733752523/core/notification/notification-exception-min.js&amp;m/1733752523/core/notification/notification-ajaxexception-min.js&amp;m/1733752523/filter_glossary/autolinker/autolinker-min.js" async=""></script>
+        <script charset="utf-8" id="yui_3_17_2_1_1734423774460_28" src="https://www.xplore-dna.net/theme/yui_combo.php?3.17.2/event-mousewheel/event-mousewheel-min.js&amp;3.17.2/event-resize/event-resize-min.js&amp;3.17.2/event-hover/event-hover-min.js&amp;3.17.2/event-touch/event-touch-min.js&amp;3.17.2/event-move/event-move-min.js&amp;3.17.2/event-flick/event-flick-min.js&amp;3.17.2/event-valuechange/event-valuechange-min.js&amp;3.17.2/event-tap/event-tap-min.js" async=""></script>
+        <script charset="utf-8" id="yui_3_17_2_1_1734423774460_30" src="https://www.xplore-dna.net/theme/yui_combo.php?m/1733752523/course/coursebase/coursebase-min.js" async=""></script>
+        <script charset="utf-8" id="yui_3_17_2_1_1734423774460_55" src="https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js?delayStartupUntil=configured" async=""></script>
+        <script id="firstthemesheet" type="text/css">/** Required in order to fix style inclusion problems in IE with YUI **/</script>
+        <link rel="stylesheet" type="text/css" href="https://www.xplore-dna.net/theme/styles.php/boost/1733774065_1/all">
+        <script>
+            //<![CDATA[
+            // var M = {}; M.yui = {};
+            // M.pageloadstarttime = new Date();
+            // M.cfg = {"wwwroot":"https:\/\/www.xplore-dna.net","homeurl":{},"sesskey":"nUSSqKsjhB","sessiontimeout":"7200","sessiontimeoutwarning":1200,"themerev":"1733774065","slasharguments":1,"theme":"boost","iconsystemmodule":"core\/icon_system_fontawesome","jsrev":"1733752523","admin":"admin","svgicons":true,"usertimezone":"Europa\/Berlin","courseId":600,"courseContextId":26405,"contextid":26405,"contextInstanceId":600,"langrev":1734407943,"templaterev":"1733752523"};var yui1ConfigFn = function(me) {if(/-skin|reset|fonts|grids|base/.test(me.name)){me.type='css';me.path=me.path.replace(/\.js/,'.css');me.path=me.path.replace(/\/yui2-skin/,'/assets/skins/sam/yui2-skin')}};
+            // var yui2ConfigFn = function(me) {var parts=me.name.replace(/^moodle-/,'').split('-'),component=parts.shift(),module=parts[0],min='-min';if(/-(skin|core)$/.test(me.name)){parts.pop();me.type='css';min=''}
+            // if(module){var filename=parts.join('-');me.path=component+'/'+module+'/'+filename+min+'.'+me.type}else{me.path=component+'/'+component+'.'+me.type}};
+            // YUI_config = {"debug":false,"base":"https:\/\/www.xplore-dna.net\/lib\/yuilib\/3.17.2\/","comboBase":"https:\/\/www.xplore-dna.net\/theme\/yui_combo.php?","combine":true,"filter":null,"insertBefore":"firstthemesheet","groups":{"yui2":{"base":"https:\/\/www.xplore-dna.net\/lib\/yuilib\/2in3\/2.9.0\/build\/","comboBase":"https:\/\/www.xplore-dna.net\/theme\/yui_combo.php?","combine":true,"ext":false,"root":"2in3\/2.9.0\/build\/","patterns":{"yui2-":{"group":"yui2","configFn":yui1ConfigFn}}},"moodle":{"name":"moodle","base":"https:\/\/www.xplore-dna.net\/theme\/yui_combo.php?m\/1733752523\/","combine":true,"comboBase":"https:\/\/www.xplore-dna.net\/theme\/yui_combo.php?","ext":false,"root":"m\/1733752523\/","patterns":{"moodle-":{"group":"moodle","configFn":yui2ConfigFn}},"filter":null,"modules":{"moodle-core-languninstallconfirm":{"requires":["base","node","moodle-core-notification-confirm","moodle-core-notification-alert"]},"moodle-core-actionmenu":{"requires":["base","event","node-event-simulate"]},"moodle-core-blocks":{"requires":["base","node","io","dom","dd","dd-scroll","moodle-core-dragdrop","moodle-core-notification"]},"moodle-core-notification":{"requires":["moodle-core-notification-dialogue","moodle-core-notification-alert","moodle-core-notification-confirm","moodle-core-notification-exception","moodle-core-notification-ajaxexception"]},"moodle-core-notification-dialogue":{"requires":["base","node","panel","escape","event-key","dd-plugin","moodle-core-widget-focusafterclose","moodle-core-lockscroll"]},"moodle-core-notification-alert":{"requires":["moodle-core-notification-dialogue"]},"moodle-core-notification-confirm":{"requires":["moodle-core-notification-dialogue"]},"moodle-core-notification-exception":{"requires":["moodle-core-notification-dialogue"]},"moodle-core-notification-ajaxexception":{"requires":["moodle-core-notification-dialogue"]},"moodle-core-chooserdialogue":{"requires":["base","panel","moodle-core-notification"]},"moodle-core-formchangechecker":{"requires":["base","event-focus","moodle-core-event"]},"moodle-core-event":{"requires":["event-custom"]},"moodle-core-lockscroll":{"requires":["plugin","base-build"]},"moodle-core-tooltip":{"requires":["base","node","io-base","moodle-core-notification-dialogue","json-parse","widget-position","widget-position-align","event-outside","cache-base"]},"moodle-core-popuphelp":{"requires":["moodle-core-tooltip"]},"moodle-core-maintenancemodetimer":{"requires":["base","node"]},"moodle-core-handlebars":{"condition":{"trigger":"handlebars","when":"after"}},"moodle-core-dragdrop":{"requires":["base","node","io","dom","dd","event-key","event-focus","moodle-core-notification"]},"moodle-core_availability-form":{"requires":["base","node","event","event-delegate","panel","moodle-core-notification-dialogue","json"]},"moodle-backup-confirmcancel":{"requires":["node","node-event-simulate","moodle-core-notification-confirm"]},"moodle-backup-backupselectall":{"requires":["node","event","node-event-simulate","anim"]},"moodle-course-categoryexpander":{"requires":["node","event-key"]},"moodle-course-management":{"requires":["base","node","io-base","moodle-core-notification-exception","json-parse","dd-constrain","dd-proxy","dd-drop","dd-delegate","node-event-delegate"]},"moodle-course-util":{"requires":["node"],"use":["moodle-course-util-base"],"submodules":{"moodle-course-util-base":{},"moodle-course-util-section":{"requires":["node","moodle-course-util-base"]},"moodle-course-util-cm":{"requires":["node","moodle-course-util-base"]}}},"moodle-course-dragdrop":{"requires":["base","node","io","dom","dd","dd-scroll","moodle-core-dragdrop","moodle-core-notification","moodle-course-coursebase","moodle-course-util"]},"moodle-form-passwordunmask":{"requires":[]},"moodle-form-dateselector":{"requires":["base","node","overlay","calendar"]},"moodle-form-shortforms":{"requires":["node","base","selector-css3","moodle-core-event"]},"moodle-question-chooser":{"requires":["moodle-core-chooserdialogue"]},"moodle-question-searchform":{"requires":["base","node"]},"moodle-question-preview":{"requires":["base","dom","event-delegate","event-key","core_question_engine"]},"moodle-availability_completion-form":{"requires":["base","node","event","moodle-core_availability-form"]},"moodle-availability_date-form":{"requires":["base","node","event","io","moodle-core_availability-form"]},"moodle-availability_grade-form":{"requires":["base","node","event","moodle-core_availability-form"]},"moodle-availability_group-form":{"requires":["base","node","event","moodle-core_availability-form"]},"moodle-availability_grouping-form":{"requires":["base","node","event","moodle-core_availability-form"]},"moodle-availability_profile-form":{"requires":["base","node","event","moodle-core_availability-form"]},"moodle-mod_assign-history":{"requires":["node","transition"]},"moodle-mod_quiz-quizbase":{"requires":["base","node"]},"moodle-mod_quiz-autosave":{"requires":["base","node","event","event-valuechange","node-event-delegate","io-form"]},"moodle-mod_quiz-modform":{"requires":["base","node","event"]},"moodle-mod_quiz-questionchooser":{"requires":["moodle-core-chooserdialogue","moodle-mod_quiz-util","querystring-parse"]},"moodle-mod_quiz-util":{"requires":["node","moodle-core-actionmenu"],"use":["moodle-mod_quiz-util-base"],"submodules":{"moodle-mod_quiz-util-base":{},"moodle-mod_quiz-util-slot":{"requires":["node","moodle-mod_quiz-util-base"]},"moodle-mod_quiz-util-page":{"requires":["node","moodle-mod_quiz-util-base"]}}},"moodle-mod_quiz-toolboxes":{"requires":["base","node","event","event-key","io","moodle-mod_quiz-quizbase","moodle-mod_quiz-util-slot","moodle-core-notification-ajaxexception"]},"moodle-mod_quiz-dragdrop":{"requires":["base","node","io","dom","dd","dd-scroll","moodle-core-dragdrop","moodle-core-notification","moodle-mod_quiz-quizbase","moodle-mod_quiz-util-base","moodle-mod_quiz-util-page","moodle-mod_quiz-util-slot","moodle-course-util"]},"moodle-message_airnotifier-toolboxes":{"requires":["base","node","io"]},"moodle-filter_glossary-autolinker":{"requires":["base","node","io-base","json-parse","event-delegate","overlay","moodle-core-event","moodle-core-notification-alert","moodle-core-notification-exception","moodle-core-notification-ajaxexception"]},"moodle-filter_mathjaxloader-loader":{"requires":["moodle-core-event"]},"moodle-editor_atto-editor":{"requires":["node","transition","io","overlay","escape","event","event-simulate","event-custom","node-event-html5","node-event-simulate","yui-throttle","moodle-core-notification-dialogue","moodle-core-notification-confirm","moodle-editor_atto-rangy","handlebars","timers","querystring-stringify"]},"moodle-editor_atto-plugin":{"requires":["node","base","escape","event","event-outside","handlebars","event-custom","timers","moodle-editor_atto-menu"]},"moodle-editor_atto-menu":{"requires":["moodle-core-notification-dialogue","node","event","event-custom"]},"moodle-editor_atto-rangy":{"requires":[]},"moodle-report_eventlist-eventfilter":{"requires":["base","event","node","node-event-delegate","datatable","autocomplete","autocomplete-filters"]},"moodle-report_loglive-fetchlogs":{"requires":["base","event","node","io","node-event-delegate"]},"moodle-gradereport_history-userselector":{"requires":["escape","event-delegate","event-key","handlebars","io-base","json-parse","moodle-core-notification-dialogue"]},"moodle-qbank_editquestion-chooser":{"requires":["moodle-core-chooserdialogue"]},"moodle-tool_capability-search":{"requires":["base","node"]},"moodle-tool_lp-dragdrop-reorder":{"requires":["moodle-core-dragdrop"]},"moodle-tool_monitor-dropdown":{"requires":["base","event","node"]},"moodle-assignfeedback_editpdf-editor":{"requires":["base","event","node","io","graphics","json","event-move","event-resize","transition","querystring-stringify-simple","moodle-core-notification-dialog","moodle-core-notification-alert","moodle-core-notification-warning","moodle-core-notification-exception","moodle-core-notification-ajaxexception"]},"moodle-atto_accessibilitychecker-button":{"requires":["color-base","moodle-editor_atto-plugin"]},"moodle-atto_accessibilityhelper-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_align-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_bold-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_charmap-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_clear-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_collapse-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_embedquestion-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_emojipicker-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_emoticon-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_equation-button":{"requires":["moodle-editor_atto-plugin","moodle-core-event","io","event-valuechange","tabview","array-extras"]},"moodle-atto_h5p-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_html-button":{"requires":["promise","moodle-editor_atto-plugin","moodle-atto_html-beautify","moodle-atto_html-codemirror","event-valuechange"]},"moodle-atto_html-codemirror":{"requires":["moodle-atto_html-codemirror-skin"]},"moodle-atto_html-beautify":{},"moodle-atto_image-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_indent-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_italic-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_link-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_managefiles-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_managefiles-usedfiles":{"requires":["node","escape"]},"moodle-atto_media-button":{"requires":["moodle-editor_atto-plugin","moodle-form-shortforms"]},"moodle-atto_noautolink-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_orderedlist-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_recordrtc-button":{"requires":["moodle-editor_atto-plugin","moodle-atto_recordrtc-recording"]},"moodle-atto_recordrtc-recording":{"requires":["moodle-atto_recordrtc-button"]},"moodle-atto_rtl-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_strike-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_subscript-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_superscript-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_table-button":{"requires":["moodle-editor_atto-plugin","moodle-editor_atto-menu","event","event-valuechange"]},"moodle-atto_title-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_underline-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_undo-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_unorderedlist-button":{"requires":["moodle-editor_atto-plugin"]}}},"gallery":{"name":"gallery","base":"https:\/\/www.xplore-dna.net\/lib\/yuilib\/gallery\/","combine":true,"comboBase":"https:\/\/www.xplore-dna.net\/theme\/yui_combo.php?","ext":false,"root":"gallery\/1733752523\/","patterns":{"gallery-":{"group":"gallery"}}}},"modules":{"core_filepicker":{"name":"core_filepicker","fullpath":"https:\/\/www.xplore-dna.net\/lib\/javascript.php\/1733752523\/repository\/filepicker.js","requires":["base","node","node-event-simulate","json","async-queue","io-base","io-upload-iframe","io-form","yui2-treeview","panel","cookie","datatable","datatable-sort","resize-plugin","dd-plugin","escape","moodle-core_filepicker","moodle-core-notification-dialogue"]},"core_comment":{"name":"core_comment","fullpath":"https:\/\/www.xplore-dna.net\/lib\/javascript.php\/1733752523\/comment\/comment.js","requires":["base","io-base","node","json","yui2-animation","overlay","escape"]},"mathjax":{"name":"mathjax","fullpath":"https:\/\/cdn.jsdelivr.net\/npm\/mathjax@2.7.9\/MathJax.js?delayStartupUntil=configured"}}};
+            // M.yui.loader = {modules: {}};
+            //]]>
+        </script>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style type="text/css" id="operaUserStyle"></style>
+        <style type="text/css">
+            :root .trc_related_container div[data-item-syndicated="true"], 
+            :root [href^="//mage98rquewz.com/"], 
+            :root [href^="//x4pollyxxpush.com/"], 
+            :root span[id^="ezoic-pub-ad-placeholder-"], 
+            :root ins.adsbygoogle[data-ad-slot], 
+            :root ins.adsbygoogle[data-ad-client], 
+            :root guj-ad, 
+            :root gpt-ad, 
+            :root div[id^="zergnet-widget"], 
+            :root div[id^="vuukle-ad-"], 
+            :root div[id^="taboola-stream-"], 
+            :root div[id^="sticky_ad_"], 
+            :root div[id^="st"][style^="z-index: 999999999;"], 
+            :root div[id^="pa_sticky_ad_box_middle_"], 
+            :root div[id^="gpt_ad_"], 
+            :root div[id^="ezoic-pub-ad-"], 
+            :root div[id^="dfp-ad-"], 
+            :root div[id^="crt-"][style], 
+            :root div[id^="adspot-"], 
+            :root div[id^="adrotate_widgets-"], 
+            :root ps-connatix-module, 
+            :root div[id^="ad_position_"], 
+            :root div[id^="ad-div-"], 
+            :root div[id*="ScriptRoot"], 
+            :root div[id*="MarketGid"], 
+            :root div[data-id-advertdfpconf], 
+            :root hl-adsense, 
+            :root div[data-contentexchange-widget], 
+            :root div[data-alias="300x250 Ad 2"], 
+            :root div[data-adzone], 
+            :root div[data-adunit-path], 
+            :root div[data-adname], 
+            :root div[data-ad-targeting], 
+            :root div[data-ad-placeholder], 
+            :root div[class^="native-ad-"], 
+            :root div[data-dfp-id], 
+            :root div[class^="kiwi-ad-wrapper"], 
+            :root div[aria-label="Ads"], 
+            :root display-ads, 
+            :root display-ad-component, 
+            :root atf-ad-slot, 
+            :root aside[id^="adrotate_widgets-"], 
+            :root ark-top-ad, 
+            :root amp-fx-flying-carpet, 
+            :root amp-embed[type="taboola"], 
+            :root amp-connatix-player, 
+            :root amp-ad-custom, 
+            :root amp-ad, 
+            :root div[id^="google_dfp_"], 
+            :root ad-slot, 
+            :root ad-shield-ads, 
+            :root a[style="width:100%;height:100%;z-index:10000000000000000;position:absolute;top:0;left:0;"], 
+            :root a[onmousedown^="this.href='https://paid.outbrain.com/network/redir?"][target="_blank"] + .ob_source, 
+            :root a[href^="https://xbet-4.com/"], 
+            :root div[id^="ad-position-"], 
+            :root a[href^="https://www.toprevenuegate.com/"], 
+            :root a[href^="https://www.purevpn.com/"][href*="&utm_source=aff-"], 
+            :root a[href^="https://www.privateinternetaccess.com/"] > img, 
+            :root a[href^="https://www.onlineusershielder.com/"], 
+            :root a[href^="https://financeads.net/tc.php?"], 
+            :root a[href^="https://www.mrskin.com/tour"], 
+            :root a[href^="https://www.infowarsstore.com/"] > img, 
+            :root a[href^="https://www.highperformancecpmgate.com/"], 
+            :root a[href^="https://www.highcpmrevenuenetwork.com/"], 
+            :root a[href^="https://lnkxt.bannerator.com/"], 
+            :root a[href^="https://www.geekbuying.com/dynamic-ads/"], 
+            :root a[href^="https://www.financeads.net/tc.php?"], 
+            :root [href^="https://www.herbanomic.com/"] > img, 
+            :root a[href^="https://maymooth-stopic.com/"], 
+            :root a[href^="https://www.dql2clk.com/"], 
+            :root a[href^="https://www.nutaku.net/signup/landing/"], 
+            :root a[href^="https://www.dating-finder.com/signup/?ai_d="], 
+            :root a[href^="https://explore-site.com/"], 
+            :root a[href^="https://www.brazzersnetwork.com/landing/"], 
+            :root a[href^="https://www.adxsrve.com/"], 
+            :root [data-template-type="nativead"], 
+            :root a[href^="https://www.endorico.com/Smartlink/"], 
+            :root a[href^="https://www.adultempire.com/"][href*="?partner_id="], 
+            :root a[href^="https://voluum.prom-xcams.com/"], 
+            :root div[data-type="_mgwidget"]:not(.eyeo), 
+            :root a[href^="https://twinrdsrv.com/"], 
+            :root a[href^="https://trk.nfl-online-streams.club/"], 
+            :root a[href^="https://tracking.avapartner.com/"], 
+            :root a[href^="https://track.wg-aff.com"], 
+            :root a[href^="https://track.ultravpn.com/"], 
+            :root a[href^="https://track.afcpatrk.com/"], 
+            :root a[href^="https://torguard.net/aff.php"] > img, 
+            :root [data-identity="adhesive-ad"], 
+            :root a[href^="https://tc.tradetracker.net/"] > img, 
+            :root a[href^="https://tatrck.com/"], 
+            :root a[href^="https://click.candyoffers.com/"], 
+            :root [href^="https://zstacklife.com/"] img, 
+            :root a[href^="https://t.aslnk.link/"], 
+            :root a[href^="https://t.adating.link/"], 
+            :root a[href^="https://land.brazzersnetwork.com/landing/"], 
+            :root a[href^="https://t.acam.link/"], 
+            :root a[href*="//daichoho.com/"], 
+            :root a[href^="https://syndication.optimizesrv.com/"], 
+            :root a[href^="https://go.trackitalltheway.com/"], 
+            :root [href^="https://track.fiverr.com/visit/"] > img, 
+            :root a[href^="https://syndication.exoclick.com/"], 
+            :root a[href^="https://syndication.dynsrvtbg.com/"], 
+            :root div[data-alias="300x250 Ad 1"], 
+            :root a[href^="https://syndicate.contentsserved.com/"], 
+            :root a[href^="https://svb-analytics.trackerrr.com/"], 
+            :root a[href^="https://ad.doubleclick.net/"], 
+            :root a[href^="https://static.fleshlight.com/images/banners/"], 
+            :root a[href^="https://slkmis.com/"], 
+            :root bottomadblock, 
+            :root a[href^="https://s.zlinkd.com/"], 
+            :root a[href^="https://s.zlink3.com/"], 
+            :root a[href^="https://www.mrskin.com/account/"], 
+            :root a[href^="https://s.optzsrv.com/"], 
+            :root a[href^="https://random-affiliate.atimaze.com/"], 
+            :root #kt_player > div[style$="display: block;"][style*="inset: 0px;"], 
+            :root a[href^="https://quotationfirearmrevision.com/"], 
+            :root a[href^="https://pubads.g.doubleclick.net/"], 
+            :root a[href^="https://ak.oalsauwy.net/"], 
+            :root a[href^="https://softwa.cfd/"], 
+            :root a[href^="https://play1ad.shop/"], 
+            :root a[href^="https://prf.hn/click/"][href*="/camref:"] > img, 
+            :root a[href^="https://www.dating-finder.com/?ai_d="], 
+            :root a[href^="https://serve.awmdelivery.com/"], 
+            :root a[href^="https://prf.hn/click/"][href*="/adref:"] > img, 
+            :root app-ad, 
+            :root [href^="https://ap.octopuspop.com/click/"] > img, 
+            :root a[href^="https://postback1win.com/"], 
+            :root a[href^="https://mmwebhandler.aff-online.com/"], 
+            :root a[href^="https://www.bet365.com/"][href*="affiliate="], 
+            :root a[href^="https://pb-track.com/"], 
+            :root a[href^="https://pb-front.com/"], 
+            :root a[href^="https://paid.outbrain.com/network/redir?"], 
+            :root a[href^="https://streamate.com/landing/click/"], 
+            :root div[class^="Adstyled__AdWrapper-"], 
+            :root a[href^="https://startgaming.net/tienda/" i], 
+            :root a[href^="https://osfultrbriolenai.info/"], 
+            :root a[href^="https://upsups.click/"], 
+            :root a[href^="https://ndt5.net/"], 
+            :root a[href^="http://eighteenderived.com/"], 
+            :root a[href^="https://natour.naughtyamerica.com/track/"], 
+            :root a[href^="https://mediaserver.entainpartners.com/renderBanner.do?"], 
+            :root a[href^="https://m.do.co/c/"] > img, 
+            :root .nya-slot[style], 
+            :root a[href^="https://a.bestcontentweb.top/"], 
+            :root a[href^="https://lobimax.com/"], 
+            :root a[href^="https://lead1.pl/"], 
+            :root a[href^="https://landing.brazzersnetwork.com/"], 
+            :root a[href^="https://join.virtuallust3d.com/"], 
+            :root a[href^="https://kiksajex.com/"], 
+            :root a[href^="https://juicyads.in/"], 
+            :root a[href^="https://snowdayonline.xyz/"], 
+            :root a[href^="https://mediaserver.gvcaffiliates.com/renderBanner.do?"], 
+            :root a[href^="https://join.dreamsexworld.com/"], 
+            :root a[href^="https://jaxofuna.com/"], 
+            :root a[href^="https://itubego.com/video-downloader/?affid="], 
+            :root a[href^="https://italarizege.xyz/"], 
+            :root a[href^="https://iqbroker.com/"][href*="?aff="], 
+            :root a[href^="https://hot-growngames.life/"], 
+            :root a[href^="https://golinks.work/"], 
+            :root a[href^="https://go.xxxvjmp.com/"], 
+            :root [class^="tile-picker__CitrusBannerContainer-sc-"], 
+            :root a[href^="https://go.xxxiijmp.com"], 
+            :root a[href^="https://go.xtbaffiliates.com/"], 
+            :root .OUTBRAIN[data-widget-id^="FMS_REELD_"], 
+            :root [data-role="tile-ads-module"], 
+            :root a[href^="https://go.xlviirdr.com"], 
+            :root a[href^="https://go.xlviiirdr.com"], 
+            :root a[href^="https://ismlks.com/"], 
+            :root [href^="https://www.mypillow.com/"] > img, 
+            :root a[href^="https://go.xlirdr.com"], 
+            :root [data-css-class="dfp-inarticle"], 
+            :root a[href^="https://l.hyenadata.com/"], 
+            :root a[href^="https://go.tmrjmp.com"], 
+            :root a[href^="https://zirdough.net/"], 
+            :root a[href^="https://s.deltraff.com/"], 
+            :root a[href^="https://go.markets.com/visit/?bta="], 
+            :root a[href^="https://billing.purevpn.com/aff.php"] > img, 
+            :root a[href^="https://go.hpyrdr.com/"], 
+            :root a[href^="https://lijavaxa.com/"], 
+            :root a[href^="https://go.goaserv.com/"], 
+            :root a[href^="https://t.hrtye.com/"], 
+            :root a[href^="https://go.etoro.com/"] > img, 
+            :root a[href^="https://go.dmzjmp.com"], 
+            :root div[class^="Display_displayAd"], 
+            :root a[href^="https://www.bang.com/?aff="], 
+            :root #mgb-container > #mgb, 
+            :root a[href^="https://go.admjmp.com"], 
+            :root a[href^="https://get.surfshark.net/aff_c?"][href*="&aff_id="] > img, 
+            :root a[href^="https://www.adskeeper.com"], 
+            :root a[data-redirect^="https://paid.outbrain.com/network/redir?"], 
+            :root [href^="https://clicks.affstrack.com/"] > img, 
+            :root a[href^="https://ak.hauchiwu.com/"], 
+            :root a[href^="https://engine.phn.doublepimp.com/"], 
+            :root a[href^="https://engine.blueistheneworanges.com/"], 
+            :root a[href^="https://drumskilxoa.click/"], 
+            :root a[href^="https://dl-protect.net/"], 
+            :root a[href^="https://rixofa.com/"], 
+            :root #ads[style^="position: absolute; z-index: 30; width: 100%; height"], 
+            :root a[href^="https://disobediencecalculatormaiden.com/"], 
+            :root a[href*=".foxqck.com/"], 
+            :root a[href^="https://ctosrd.com/"], 
+            :root div[id*="ScriptRoot"]:not(.eyeo), 
+            :root a[href^="https://clixtrac.com/"], 
+            :root [href^="https://noqreport.com/"] > img, 
+            :root a[href^="https://clicks.pipaffiliates.com/"], 
+            :root a[href^="https://datewhisper.life/"], 
+            :root a[href^="https://get-link.xyz/"], 
+            :root a[href^="https://click.linksynergy.com/fs-bin/"] > img, 
+            :root a[href^="https://combodef.com/"], 
+            :root a[href^="https://click.hoolig.app/"], 
+            :root a[href^="https://track.totalav.com/"], 
+            :root a[href^="https://ctrdwm.com/"], 
+            :root img[src^="https://images.purevpnaffiliates.com"], 
+            :root a[href^="https://porntubemate.com/"], 
+            :root a[href^="https://clickadilla.com/"], 
+            :root a[href^="https://click.dtiserv2.com/"], 
+            :root a[href^="https://go.xlvirdr.com"], 
+            :root a[href^="http://www.iyalc.com/"], 
+            :root a[href^="https://claring-loccelkin.com/"], 
+            :root a[href^="https://s.ma3ion.com/"], 
+            :root a[href^="https://cams.imagetwist.com/in/?track="], 
+            :root a[href^="https://bongacams2.com/track?"], 
+            :root a[href^="https://t.ajrkm1.com/"], 
+            :root [href="https://masstortfinancing.com"] img, 
+            :root a[href^="https://bongacams10.com/track?"], 
+            :root a[href^="https://www.sheetmusicplus.com/"][href*="?aff_id="], 
+            :root a[href^="https://bngpt.com/"], 
+            :root a[href^="https://black77854.com/"], 
+            :root a[href^="https://banners.livepartners.com/"], 
+            :root a[href^="http://revolvemockerycopper.com/"], 
+            :root a[href^="https://awptjmp.com/"], 
+            :root a[href^="https://join.sexworld3d.com/track/"], 
+            :root a[href^="https://intenseaffiliates.com/redirect/"], 
+            :root a[href^="https://aweptjmp.com/"], 
+            :root [class^="s2nPlayer"], 
+            :root a[href^="https://chaturbate.jjgirls.com/?track="], 
+            :root a[href^="https://ausoafab.net/"], 
+            :root a[href^="https://activate-game.com/"], 
+            :root .scroll-fixable.rail-right > .deals-rail, 
+            :root [data-wpas-zoneid], 
+            :root a[href^="https://a2.adform.net/"], 
+            :root a[href^="https://auesk.cfd/"], 
+            :root a[href^="https://ak.psaltauw.net/"], 
+            :root a[href^="https://adclick.g.doubleclick.net/"], 
+            :root a[href^="https://bc.game/"], 
+            :root a[href^="https://a.bestcontentoperation.top/"], 
+            :root a[href^="https://adultfriendfinder.com/go/"], 
+            :root a[href^="https://ads.planetwin365affiliate.com/"], 
+            :root a[href^="https://ads.leovegas.com/"], 
+            :root a[href^="https://a.candyai.love/"], 
+            :root a[href^="https://playnano.online/offerwalls/?ref="], 
+            :root a[href^="https://a.adtng.com/"], 
+            :root [data-m-ad-id], 
+            :root a[href^="https://a-ads.com/"], 
+            :root div[id^="rc-widget-"], 
+            :root a[href^="http://eslp34af.click/"], 
+            :root a[href^="https://turnstileunavailablesite.com/"], 
+            :root a[href^="https://chaturbate.com/in/?"], 
+            :root a[href^="https://prf.hn/click/"][href*="/creativeref:"] > img, 
+            :root a[href*="&maxads="], 
+            :root a[href^="http://www.adultempire.com/unlimited/promo?"][href*="&partner_id="], 
+            :root a[href^="https://1betandgonow.com/"], 
+            :root a[href^="https://eergortu.net/"], 
+            :root div[id^="optidigital-adslot"], 
+            :root a[href^="https://123-stream.org/"], 
+            :root a[href^="http://www.friendlyduck.com/AF_"], 
+            :root a[href^="https://allhost.shop/aff.php?"], 
+            :root [data-dynamic-ads], 
+            :root a[href^="http://vnte9urn.click/"], 
+            :root a[href^="https://getvideoz.click/"], 
+            :root a[href^="http://troopsassistedstupidity.com/"], 
+            :root a[href^="http://trk.globwo.online/"], 
+            :root a-ad, 
+            :root a[href^="https://offhandpump.com/"], 
+            :root a[href^="http://stickingrepute.com/"], 
+            :root #slashboxes > .deals-rail, 
+            :root [data-rc-widget="data-rc-widget"], 
+            :root a[href^="http://premonitioninventdisagree.com/"], 
+            :root a[href^="http://naggingirresponsible.com/"], 
+            :root a[href^="https://in.rabbtrk.com/"], 
+            :root a[href^="http://www.h4trck.com/"], 
+            :root a[href^="https://81ac.xyz/"], 
+            :root a[href^="http://guestblackmail.com/"], 
+            :root a[href^="http://cam4com.go2cloud.org/aff_c?"], 
+            :root a[href^="https://ads.betfair.com/redirect.aspx?"], 
+            :root [href^="https://www.mypatriotsupply.com/"] > img, 
+            :root a[href^="https://trk.softonixs.xyz/"], 
+            :root a[href^="https://sexynearme.com/"], 
+            :root a[href^="https://myclick-2.com/"], 
+            :root a[href^="http://dragnag.com/"], 
+            :root a[href^="http://dragfault.com/"], 
+            :root [id^="div-gpt-ad"], 
+            :root .ob_container .item-container-obpd, 
+            :root div[id^="yandex_ad"], 
+            :root a[href^="https://www8.smartadserver.com/"], 
+            :root a[href^="https://pb-imc.com/"], 
+            :root a[href^="http://deskfrontfreely.com/"], 
+            :root [data-advadstrackid], 
+            :root a[href^="http://muzzlematrix.com/"], 
+            :root a[href^="https://track.adform.net/"], 
+            :root a[href^="http://avthelkp.net/"], 
+            :root a[href^="https://a.medfoodhome.com/"], 
+            :root a[href^="https://engine.flixtrial.com/"], 
+            :root [data-type="ad-vertical"], 
+            :root [data-taboola-options], 
+            :root a[href^="http://annulmentequitycereals.com/"], 
+            :root a[href^="//startgaming.net/tienda/" i], 
+            :root a[href^="https://www.get-express-vpn.com/offer/"], 
+            :root a[href^="https://s.cant3am.com/"], 
+            :root a[href^="//s.st1net.com/splash.php"], 
+            :root a[href^="https://join.virtualtaboo.com/track/"], 
+            :root [id^="ad_sky"], 
+            :root a[href^="http://coefficienttolerategravel.com/"], 
+            :root a[href^="https://a.medfoodsafety.com/"], 
+            :root a[href^="//go.eabids.com/"], 
+            :root a[href^="//ejitsirdosha.net/"], 
+            :root a[href^=" https://www.friendlyduck.com/AF_"], 
+            :root a[href*="/jump/next.php?r="], 
+            :root [href^="https://ilovemyfreedoms.com/landing-"], 
+            :root a[href^="https://go.nordvpn.net/aff"] > img, 
+            :root .\[\&_\.gdprAdTransparencyCogWheelButton\]\:\!pjra-z-\[5\], 
+            :root [href^="http://clicks.totemcash.com/"], 
+            :root a[href^="https://ad.zanox.com/ppc/"] > img, 
+            :root a[href^="https://lone-pack.com/"], 
+            :root [data-d-ad-id], 
+            :root a[href*=".engine.adglare.net/"], 
+            :root a[href^="https://t.ajrkm3.com/"], 
+            :root [href^="https://aads.com/campaigns/"], 
+            :root a[href^="//stighoazon.com/"], 
+            :root [href^="https://www.profitablegatecpm.com/"], 
+            :root div[id^="lazyad-"], 
+            :root a[href^="http://com-1.pro/"], 
+            :root a[href*=".cfm?domain="][href*="&fp="], 
+            :root [data-ad-name], 
+            :root a[href^="https://loboclick.com/"], 
+            :root a[data-url^="https://vulpix.bet/?ref="], 
+            :root a[href^="https://ab.advertiserurl.com/aff/"], 
+            :root a[data-oburl^="https://paid.outbrain.com/network/redir?"], 
+            :root a[href^="https://go.xlivrdr.com"], 
+            :root [onclick^="location.href='https://1337x.vpnonly.site/"], 
+            :root [name^="google_ads_iframe"], 
+            :root [id^="section-ad-banner"], 
+            :root a[href^="https://www.goldenfrog.com/vyprvpn?offer_id="][href*="&aff_id="], 
+            :root a[href*="//jjgirls.com/sex/Chaturbate"], 
+            :root [id^="ad-wrap-"], 
+            :root [href^="https://zone.gotrackier.com/"], 
+            :root a[href^="http://sarcasmadvisor.com/"], 
+            :root [href^="https://www.restoro.com/"], 
+            :root [href^="https://www.targetingpartner.com/"], 
+            :root .section-subheader > .section-hotel-prices-header, 
+            :root [href^="https://www.hostg.xyz/"] > img, 
+            :root a[href^="http://adultfriendfinder.com/go/"], 
+            :root a[href^="https://fastestvpn.com/lifetime-special-deal?a_aid="], 
+            :root a[href^="https://tour.mrskin.com/"], 
+            :root [href^="https://www.brighteonstore.com/products/"] img, 
+            :root [data-ad-width], 
+            :root [data-block-type="ad"], 
+            :root a[href^="https://baipahanoop.net/"], 
+            :root [href^="https://v.investologic.co.uk/"], 
+            :root div[id^="div-ads-"], 
+            :root [href^="https://rapidgator.net/article/premium/ref/"], 
+            :root [href^="https://join.girlsoutwest.com/"], 
+            :root a[href^="https://track.aftrk3.com/"], 
+            :root [href^="https://join3.bannedsextapes.com"], 
+            :root a[href^="https://bodelen.com/"], 
+            :root a[href*=".g2afse.com/"], 
+            :root div[id^="adngin-"], 
+            :root [data-rc-widget], 
+            :root span[data-ez-ph-id], 
+            :root [href^="https://track.aftrk1.com/"], 
+            :root [href^="https://join.playboyplus.com/track/"], 
+            :root a[href^="https://go.xxxijmp.com"], 
+            :root [href^="https://istlnkcl.com/"], 
+            :root [href^="https://go.xlrdr.com"], 
+            :root a[href^="https://tm-offers.gamingadult.com/"], 
+            :root [href^="https://charmingdatings.life/"], 
+            :root [href^="https://glersakr.com/"], 
+            :root a[href^="https://a.bestcontentfood.top/"], 
+            :root [href^="https://cpa.10kfreesilver.com/"], 
+            :root [data-id^="div-gpt-ad"], 
+            :root a[href^="https://tracker.loropartners.com/"], 
+            :root [href^="https://awbbjmp.com/"], 
+            :root a[data-href^="http://ads.trafficjunky.net/"], 
+            :root a[href*=".adsrv.eacdn.com/"], 
+            :root [href^="https://antiagingbed.com/discount/"] > img, 
+            :root a[href^="http://partners.etoro.com/"], 
+            :root a[href^="https://www.friendlyduck.com/AF_"], 
+            :root [href^="https://ad1.adfarm1.adition.com/"], 
+            :root a[href^="https://bngprm.com/"], 
+            :root [href^="https://shiftnetwork.infusionsoft.com/go/"] > img, 
+            :root a[href^="https://go.strpjmp.com/"], 
+            :root a[href^="https://go.bushheel.com/"], 
+            :root a[href^="https://ctjdwm.com/"], 
+            :root a[href^="https://camfapr.com/landing/click/"], 
+            :root div[data-ad-wrapper], 
+            :root .gnt_em_vp_c[data-g-s="vp_dk"], 
+            :root [href="//sexcams.plus/"], 
+            :root [href^="http://www.mypillow.com/"] > img, 
+            :root #kt_player > a[target="_blank"], 
+            :root a[href^="http://bongacams.com/track?"], 
+            :root [href^="http://mypillow.com/"] > img, 
+            :root [href="https://ourgoldguy.com/contact/"] img, 
+            :root #teaser3[style="width: 100%;text-align: center;display: scroll;position:fixed;bottom: 0;margin: 0 auto;z-index: 103;"], 
+            :root [href="https://www.masstortfinancing.com/"] > img, 
+            :root a[href^="https://go.rmhfrtnd.com/"], 
+            :root [href="https://jdrucker.com/gold"] > img, 
+            :root a[href^="https://track.1234sd123.com/"], 
+            :root zeus-ad, 
+            :root [data-testid="prism-ad-wrapper"], 
+            :root [href^="https://ad.admitad.com/"], 
+            :root [href^="https://mypillow.com/"] > img, 
+            :root [data-testid="ad_testID"], 
+            :root [href^="https://optimizedelite.com/"] > img, 
+            :root [data-name="adaptiveConstructorAd"], 
+            :root a[href^="https://go.cmtaffiliates.com/"], 
+            :root [data-testid="adBanner-wrapper"], 
+            :root [href^="https://mylead.global/stl/"] > img, 
+            :root [href^="https://mypatriotsupply.com/"] > img, 
+            :root a[href^="https://go.hpyjmp.com"], 
+            :root [href^="https://mystore.com/"] > img, 
+            :root citrus-ad-wrapper, 
+            :root a[onmousedown^="this.href='https://paid.outbrain.com/network/redir?"][target="_blank"], 
+            :root a[href^="https://go.grinsbest.com/"], 
+            :root a[href^="https://vo2.qrlsx.com/"], 
+            :root [href^="https://www.avantlink.com/click.php"] img, 
+            :root [href^="https://wct.link/click?"], 
+            :root div[data-adunit], 
+            :root app-large-ad, 
+            :root [href^="https://turtlebids.irauctions.com/"] img, 
+            :root div[class*="publift-widget-"]:has(.fuse-slot-sticky), 
+            :root a[href^="https://witnessjacket.com/"], 
+            :root [data-mobile-ad-id], 
+            :root a[href^="https://fc.lc/ref/"], 
+            :root [data-adshim], 
+            :root topadblock, 
+            :root a[href^="//s.zlinkd.com/"], 
+            :root [class^="amp-ad-"], 
+            :root a[href^="http://handgripvegetationhols.com/"], 
+            :root a[href^="https://bs.serving-sys.com"], 
+            :root a[href^="https://gamingadlt.com/?offer="], 
+            :root [data-desktop-ad-id], 
+            :root a[href^="https://www.liquidfire.mobi/"], 
+            :root .grid > .container > #aside-promotion, 
+            :root DFP-AD, 
+            :root [id^="ad_slider"], 
+            :root [data-adbridg-ad-class], 
+            :root #teaser3[style^="width:autopx;"], 
+            :root [data-adblockkey], 
+            :root [onclick*="content.ad/"], 
+            :root [data-ad-manager-id], 
+            :root AMP-AD, 
+            :root [data-ad-cls], 
+            :root [data-ez-name], 
+            :root a[href^="https://go.mnaspm.com/"], 
+            :root a[href^="https://service.bv-aff-trx.com/"], 
+            :root a[href^="https://6-partner.com/"], 
+            :root a[href^="https://traffdaq.com/"], 
+            :root [href^="https://www.cloudways.com/en/?id"], 
+            :root #teaser1[style^="width:autopx;"], 
+            :root [class^="div-gpt-ad"], 
+            :root a[href^="http://tc.tradetracker.net/"] > img, 
+            :root [href^="https://affiliate.fastcomet.com/"] > img, 
+            :root [class^="adDisplay-module"], 
+            :root [data-freestar-ad][id], 
+            :root AD-SLOT, 
+            :root a[href^="https://www.googleadservices.com/pagead/aclk?"] > img, 
+            :root [data-ad-module], 
+            :root a[href^="https://go.skinstrip.net"][href*="?campaignId="], 
+            :root #teaser2[style^="width:autopx;"], 
+            :root a[href^="https://ngineet.cfd/"], 
+            :root [data-revive-zoneid], 
+            :root a[href^="https://losingoldfry.com/"], 
+            :root div[id^="div-gpt-"], 
+            :root a[href^="https://gml-grp.com/"], 
+            :root .ob_dual_right > .ob_ads_header ~ .odb_div, 
+            :root #target.pk-page-ready #pk-status-message, 
+            :root app-advertisement, 
+            :root a[href^="https://getmatchedlocally.com/"], 
+            :root a[href^="https://clickins.slixa.com/"], 
+            :root a[href^="https://cam4com.go2cloud.org/"], 
+            :root a[href^="http://li.blogtrottr.com/click?"], 
+            :root a[href^="https://t.ajump1.com/"], 
+            :root a[href^="https://go.xxxjmp.com"], 
+            :root #leader-companion > a[href] { display: none !important; }
+        </style>
+        <script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="core/first" src="https://www.xplore-dna.net/lib/requirejs.php/1733752523/core/first.js"></script>
+        <script type="text/x-mathjax-config;executed=true">
+            MathJax.Hub.Config({
+                config: ["Accessible.js", "Safe.js"],
+                errorSettings: { message: ["!"] },
+                skipStartupTypeset: true,
+                messageStyle: "none"
+            });
+        </script>
+        <script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="core_form/events" src="https://www.xplore-dna.net/lib/requirejs.php/1733752523/core_form/events.js"></script>
+        <script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="core/event" src="https://www.xplore-dna.net/lib/requirejs.php/1733752523/core/event.js"></script>
+        <script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="jquery" src="https://www.xplore-dna.net/lib/javascript.php/1733752523/lib/jquery/jquery-3.6.1.min.js"></script>
+        <script type="text/javascript">
+            require(['core_courseformat/local/courseindex/cm'], function(component) {
+                component.init('0-course-index-cm-14271');
+            });
+            require(['core_courseformat/local/courseindex/section'], function(component) {
+                component.init('0-course-index-section-7088');
+            });
+            require(['core_courseformat/local/courseindex/cm'], function(component) {
+                component.init('0-course-index-cm-14272');
+            });
+            require(['core_courseformat/local/courseindex/cm'], function(component) {
+                component.init('0-course-index-cm-14273');
+            });
+            require(['core_courseformat/local/courseindex/cm'], function(component) {
+                component.init('0-course-index-cm-14275');
+            });
+            require(['core_courseformat/local/courseindex/cm'], function(component) {
+                component.init('0-course-index-cm-14276');
+            });
+            require(['core_courseformat/local/courseindex/cm'], function(component) {
+                component.init('0-course-index-cm-14277');
+            });
+            require(['core_courseformat/local/courseindex/cm'], function(component) {
+                component.init('0-course-index-cm-14278');
+            });
+            require(['core_courseformat/local/courseindex/cm'], function(component) {
+                component.init('0-course-index-cm-14279');
+            });
+            require(['core_courseformat/local/courseindex/section'], function(component) {
+                component.init('0-course-index-section-7089');
+            });
+            require(['core_courseformat/local/courseindex/cm'], function(component) {
+                component.init('0-course-index-cm-14937');
+            });
+            require(['core_courseformat/local/courseindex/cm'], function(component) {
+                component.init('0-course-index-cm-14681');
+            });
+            require(['core_courseformat/local/courseindex/cm'], function(component) {
+                component.init('0-course-index-cm-14680');
+            });
+            require(['core_courseformat/local/courseindex/cm'], function(component) {
+                component.init('0-course-index-cm-14704');
+            });
+            require(['core_courseformat/local/courseindex/cm'], function(component) {
+                component.init('0-course-index-cm-15275');
+            });
+            require(['core_courseformat/local/courseindex/section'], function(component) {
+                component.init('0-course-index-section-7090');
+            });
+            require(['core_courseformat/local/courseindex/cm'], function(component) {
+                component.init('0-course-index-cm-14708');
+            });
+            require(['core_courseformat/local/courseindex/cm'], function(component) {
+                component.init('0-course-index-cm-14938');
+            });
+            require(['core_courseformat/local/courseindex/cm'], function(component) {
+                component.init('0-course-index-cm-14707');
+            });
+            require(['core_courseformat/local/courseindex/section'], function(component) {
+                component.init('0-course-index-section-7091');
+            });
+            require(['core_courseformat/local/courseindex/cm'], function(component) {
+                component.init('0-course-index-cm-14709');
+            });
+            require(['core_courseformat/local/courseindex/section'], function(component) {
+                component.init('0-course-index-section-7092');
+            });
+            require(['core_courseformat/local/courseindex/section'], function(component) {
+                component.init('0-course-index-section-7093');
+            });
+            require(['core_courseformat/local/courseindex/cm'], function(component) {
+                component.init('0-course-index-cm-14280');
+            });
+            require(['core_courseformat/local/courseindex/section'], function(component) {
+                component.init('0-course-index-section-7094');
+            });
+            require(['core_courseformat/local/courseindex/courseindex'], function(component) {
+                component.init('0-course-index');
+            });
+        </script>
+        <style type="text/css">.MathJax_Hover_Frame {border-radius: .25em; -webkit-border-radius: .25em; -moz-border-radius: .25em; -khtml-border-radius: .25em; box-shadow: 0px 0px 15px #83A; -webkit-box-shadow: 0px 0px 15px #83A; -moz-box-shadow: 0px 0px 15px #83A; -khtml-box-shadow: 0px 0px 15px #83A; border: 1px solid #A6D ! important; display: inline-block; position: absolute}
+            .MathJax_Menu_Button .MathJax_Hover_Arrow {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px; -khtml-border-radius: 4px; font-family: 'Courier New',Courier; font-size: 9px; color: #F0F0F0}
+            .MathJax_Menu_Button .MathJax_Hover_Arrow span {display: block; background-color: #AAA; border: 1px solid; border-radius: 3px; line-height: 0; padding: 4px}
+            .MathJax_Hover_Arrow:hover {color: white!important; border: 2px solid #CCC!important}
+            .MathJax_Hover_Arrow:hover span {background-color: #CCC!important}
+        </style>
+        <style type="text/css">#MathJax_About {position: fixed; left: 50%; width: auto; text-align: center; border: 3px outset; padding: 1em 2em; background-color: #DDDDDD; color: black; cursor: default; font-family: message-box; font-size: 120%; font-style: normal; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 15px; -webkit-border-radius: 15px; -moz-border-radius: 15px; -khtml-border-radius: 15px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+            #MathJax_About.MathJax_MousePost {outline: none}
+            .MathJax_Menu {position: absolute; background-color: white; color: black; width: auto; padding: 2px; border: 1px solid #CCCCCC; margin: 0; cursor: default; font: menu; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+            .MathJax_MenuItem {padding: 2px 2em; background: transparent}
+            .MathJax_MenuArrow {position: absolute; right: .5em; padding-top: .25em; color: #666666; font-size: .75em}
+            .MathJax_MenuActive .MathJax_MenuArrow {color: white}
+            .MathJax_MenuArrow.RTL {left: .5em; right: auto}
+            .MathJax_MenuCheck {position: absolute; left: .7em}
+            .MathJax_MenuCheck.RTL {right: .7em; left: auto}
+            .MathJax_MenuRadioCheck {position: absolute; left: 1em}
+            .MathJax_MenuRadioCheck.RTL {right: 1em; left: auto}
+            .MathJax_MenuLabel {padding: 2px 2em 4px 1.33em; font-style: italic}
+            .MathJax_MenuRule {border-top: 1px solid #CCCCCC; margin: 4px 1px 0px}
+            .MathJax_MenuDisabled {color: GrayText}
+            .MathJax_MenuActive {background-color: Highlight; color: HighlightText}
+            .MathJax_MenuDisabled:focus, .MathJax_MenuLabel:focus {background-color: #E8E8E8}
+            .MathJax_ContextMenu:focus {outline: none}
+            .MathJax_ContextMenu .MathJax_MenuItem:focus {outline: none}
+            #MathJax_AboutClose {top: .2em; right: .2em}
+            .MathJax_Menu .MathJax_MenuClose {top: -10px; left: -10px}
+            .MathJax_MenuClose {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; font-family: 'Courier New',Courier; font-size: 24px; color: #F0F0F0}
+            .MathJax_MenuClose span {display: block; background-color: #AAA; border: 1.5px solid; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; line-height: 0; padding: 8px 0 6px}
+            .MathJax_MenuClose:hover {color: white!important; border: 2px solid #CCC!important}
+            .MathJax_MenuClose:hover span {background-color: #CCC!important}
+            .MathJax_MenuClose:hover:focus {outline: none}
+        </style>
+        <style type="text/css">.MathJax_Preview .MJXf-math {color: inherit!important}</style>
+        <style type="text/css" class="">.MJX_Assistive_MathML {position: absolute!important; top: 0; left: 0; clip: rect(1px, 1px, 1px, 1px); padding: 1px 0 0 0!important; border: 0!important; height: 1px!important; width: 1px!important; overflow: hidden!important; display: block!important; -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none}
+            .MJX_Assistive_MathML.MJX_Assistive_MathML_Block {width: 100%!important}
+        </style>
+        <style type="text/css" class="">#MathJax_Zoom {position: absolute; background-color: #F0F0F0; overflow: auto; display: block; z-index: 301; padding: .5em; border: 1px solid black; margin: 0; font-weight: normal; font-style: normal; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; -webkit-box-sizing: content-box; -moz-box-sizing: content-box; box-sizing: content-box; box-shadow: 5px 5px 15px #AAAAAA; -webkit-box-shadow: 5px 5px 15px #AAAAAA; -moz-box-shadow: 5px 5px 15px #AAAAAA; -khtml-box-shadow: 5px 5px 15px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+            #MathJax_ZoomOverlay {position: absolute; left: 0; top: 0; z-index: 300; display: inline-block; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+            #MathJax_ZoomFrame {position: relative; display: inline-block; height: 0; width: 0}
+            #MathJax_ZoomEventTrap {position: absolute; left: 0; top: 0; z-index: 302; display: inline-block; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+        </style>
+        <style type="text/css" class="">.MathJax_Preview {color: #888; display: contents}
+            #MathJax_Message {position: fixed; left: 1em; bottom: 1.5em; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+            #MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+            .MathJax_Error {color: #CC0000; font-style: italic}
+        </style>
+        <style type="text/css" class="">.MJXp-script {font-size: .8em}
+            .MJXp-right {-webkit-transform-origin: right; -moz-transform-origin: right; -ms-transform-origin: right; -o-transform-origin: right; transform-origin: right}
+            .MJXp-bold {font-weight: bold}
+            .MJXp-italic {font-style: italic}
+            .MJXp-scr {font-family: MathJax_Script,'Times New Roman',Times,STIXGeneral,serif}
+            .MJXp-frak {font-family: MathJax_Fraktur,'Times New Roman',Times,STIXGeneral,serif}
+            .MJXp-sf {font-family: MathJax_SansSerif,'Times New Roman',Times,STIXGeneral,serif}
+            .MJXp-cal {font-family: MathJax_Caligraphic,'Times New Roman',Times,STIXGeneral,serif}
+            .MJXp-mono {font-family: MathJax_Typewriter,'Times New Roman',Times,STIXGeneral,serif}
+            .MJXp-largeop {font-size: 150%}
+            .MJXp-largeop.MJXp-int {vertical-align: -.2em}
+            .MJXp-math {display: inline-block; line-height: 1.2; text-indent: 0; font-family: 'Times New Roman',Times,STIXGeneral,serif; white-space: nowrap; border-collapse: collapse}
+            .MJXp-display {display: block; text-align: center; margin: 1em 0}
+            .MJXp-math span {display: inline-block}
+            .MJXp-box {display: block!important; text-align: center}
+            .MJXp-box:after {content: " "}
+            .MJXp-rule {display: block!important; margin-top: .1em}
+            .MJXp-char {display: block!important}
+            .MJXp-mo {margin: 0 .15em}
+            .MJXp-mfrac {margin: 0 .125em; vertical-align: .25em}
+            .MJXp-denom {display: inline-table!important; width: 100%}
+            .MJXp-denom > * {display: table-row!important}
+            .MJXp-surd {vertical-align: top}
+            .MJXp-surd > * {display: block!important}
+            .MJXp-script-box > *  {display: table!important; height: 50%}
+            .MJXp-script-box > * > * {display: table-cell!important; vertical-align: top}
+            .MJXp-script-box > *:last-child > * {vertical-align: bottom}
+            .MJXp-script-box > * > * > * {display: block!important}
+            .MJXp-mphantom {visibility: hidden}
+            .MJXp-munderover, .MJXp-munder {display: inline-table!important}
+            .MJXp-over {display: inline-block!important; text-align: center}
+            .MJXp-over > * {display: block!important}
+            .MJXp-munderover > *, .MJXp-munder > * {display: table-row!important}
+            .MJXp-mtable {vertical-align: .25em; margin: 0 .125em}
+            .MJXp-mtable > * {display: inline-table!important; vertical-align: middle}
+            .MJXp-mtr {display: table-row!important}
+            .MJXp-mtd {display: table-cell!important; text-align: center; padding: .5em 0 0 .5em}
+            .MJXp-mtr > .MJXp-mtd:first-child {padding-left: 0}
+            .MJXp-mtr:first-child > .MJXp-mtd {padding-top: 0}
+            .MJXp-mlabeledtr {display: table-row!important}
+            .MJXp-mlabeledtr > .MJXp-mtd:first-child {padding-left: 0}
+            .MJXp-mlabeledtr:first-child > .MJXp-mtd {padding-top: 0}
+            .MJXp-merror {background-color: #FFFF88; color: #CC0000; border: 1px solid #CC0000; padding: 1px 3px; font-style: normal; font-size: 90%}
+            .MJXp-scale0 {-webkit-transform: scaleX(.0); -moz-transform: scaleX(.0); -ms-transform: scaleX(.0); -o-transform: scaleX(.0); transform: scaleX(.0)}
+            .MJXp-scale1 {-webkit-transform: scaleX(.1); -moz-transform: scaleX(.1); -ms-transform: scaleX(.1); -o-transform: scaleX(.1); transform: scaleX(.1)}
+            .MJXp-scale2 {-webkit-transform: scaleX(.2); -moz-transform: scaleX(.2); -ms-transform: scaleX(.2); -o-transform: scaleX(.2); transform: scaleX(.2)}
+            .MJXp-scale3 {-webkit-transform: scaleX(.3); -moz-transform: scaleX(.3); -ms-transform: scaleX(.3); -o-transform: scaleX(.3); transform: scaleX(.3)}
+            .MJXp-scale4 {-webkit-transform: scaleX(.4); -moz-transform: scaleX(.4); -ms-transform: scaleX(.4); -o-transform: scaleX(.4); transform: scaleX(.4)}
+            .MJXp-scale5 {-webkit-transform: scaleX(.5); -moz-transform: scaleX(.5); -ms-transform: scaleX(.5); -o-transform: scaleX(.5); transform: scaleX(.5)}
+            .MJXp-scale6 {-webkit-transform: scaleX(.6); -moz-transform: scaleX(.6); -ms-transform: scaleX(.6); -o-transform: scaleX(.6); transform: scaleX(.6)}
+            .MJXp-scale7 {-webkit-transform: scaleX(.7); -moz-transform: scaleX(.7); -ms-transform: scaleX(.7); -o-transform: scaleX(.7); transform: scaleX(.7)}
+            .MJXp-scale8 {-webkit-transform: scaleX(.8); -moz-transform: scaleX(.8); -ms-transform: scaleX(.8); -o-transform: scaleX(.8); transform: scaleX(.8)}
+            .MJXp-scale9 {-webkit-transform: scaleX(.9); -moz-transform: scaleX(.9); -ms-transform: scaleX(.9); -o-transform: scaleX(.9); transform: scaleX(.9)}
+            .MathJax_PHTML .noError {font-size: 90%; text-align: left; color: black; padding: 1px 3px; border: 1px solid}
+        </style>
+        <style id="__web-inspector-hide-shortcut-style__" class="">
+            .__web-inspector-hide-shortcut__, .__web-inspector-hide-shortcut__ *, .__web-inspector-hidebefore-shortcut__::before, .__web-inspector-hideafter-shortcut__::after
+            {
+            visibility: hidden !important;
+            }
+        </style>
+    </head>
+    <body>
+        <li id="section-2" class="section course-section main clearfix" data-sectionid="2" data-sectionreturnid="0" data-for="section" data-id="7090" data-number="2" data-indexed="true">
+            <div class="course-section-header d-flex" data-for="section_title" data-id="7090" data-number="2">
+                <div class="d-flex align-items-start position-relative">
+                    <a class="">
+                        <span class="expanded-icon icon-no-margin p-2" title="Einklappen">
+                            <i class="icon fa fa-chevron-down fa-fw" aria-hidden="true"></i>
+                        </span>
+                    </a>
+                    <style>
+                    h3:hover{
+                        cursor: default;
+                    }
+                    </style>
+                    <h3 class="sectionname course-content-item d-flex align-self-stretch align-items-center mb-0" id="sectionid-7090-title" data-for="section_title" data-id="7090" data-number="2">
+                        Temperaturmessdaten auf einer SD-Karte speichern
+                    </h3>
+                </div>
+                <div data-region="sectionbadges" class="sectionbadges d-flex align-items-center"></div>
+            </div>
+            <div id="coursecontentcollapse2" class="content course-content-item-content collapse show">
+                <div class=" my-3" data-for="sectioninfo">
+                    <div class="section_availability course-description-item">
                     </div>
-                </li>
-    
-
-
-</body></html>
+                </div>
+                <ul class="section m-0 p-0 img-text  d-block " data-for="cmlist">
+                    <li class="activity activity-wrapper page modtype_page  " id="module-14937" data-for="cmitem" data-id="14937" data-indexed="true">
+                        <div class="activity-item " data-activityname="Vorbereitung">
+                            <div class="activity-basis d-flex align-items-center">
+                                <div class="d-flex flex-column flex-md-row w-100 align-self-start">
+                                    <div class="activity-instance d-flex flex-column">
+                                        <div class="activitytitle media  modtype_page position-relative align-self-start">
+                                            <div class="activityiconcontainer content courseicon align-self-start mr-3">
+                                                <img src="https://www.xplore-dna.net/theme/image.php/boost/page/1733774065/monologo" class="activityicon " alt="page icon">
+                                            </div>
+                                            <div class="media-body align-self-center">
+                                                <div class="activityname">
+                                                    <a href="https://www.xplore-dna.net/mod/page/view.php?id=14937" class=" aalink stretched-link" onclick="">        
+                                                        <span class="instancename">Vorbereitung <span class="accesshide "> Textseite</span>
+                                                        </span>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="activity-info mt-1 mt-md-0">
+                                        <div data-region="activity-information" data-activityname="Vorbereitung" class="activity-information"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="description"></div>
+                        </div>
+                    </li>
+                    <li class="activity activity-wrapper page modtype_page  " id="module-14681" data-for="cmitem" data-id="14681" data-indexed="true">
+                        <div class="activity-item " data-activityname="Aufbau">
+                            <div class="activity-basis d-flex align-items-center">
+                                <div class="d-flex flex-column flex-md-row w-100 align-self-start">
+                                    <div class="activity-instance d-flex flex-column">
+                                        <div class="activitytitle media  modtype_page position-relative align-self-start">
+                                            <div class="activityiconcontainer content courseicon align-self-start mr-3">
+                                                <img src="https://www.xplore-dna.net/theme/image.php/boost/page/1733774065/monologo" class="activityicon " alt="page icon">
+                                            </div>
+                                            <div class="media-body align-self-center">
+                                                <div class="activityname">
+                                                    <a href="https://www.xplore-dna.net/mod/page/view.php?id=14681" class=" aalink stretched-link" onclick="">        
+                                                        <span class="instancename">Aufbau <span class="accesshide "> Textseite</span>
+                                                        </span>    
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="activity-info mt-1 mt-md-0">
+                                        <div data-region="activity-information" data-activityname="Aufbau" class="activity-information"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="description"></div>
+                        </div>
+                    </li>
+                    <li class="activity activity-wrapper page modtype_page  " id="module-14680" data-for="cmitem" data-id="14680" data-indexed="true">
+                        <div class="activity-item " data-activityname="ESP32 Code">
+                            <div class="activity-basis d-flex align-items-center">
+                                <div class="d-flex flex-column flex-md-row w-100 align-self-start">
+                                    <div class="activity-instance d-flex flex-column">
+                                        <div class="activitytitle media  modtype_page position-relative align-self-start">
+                                            <div class="activityiconcontainer content courseicon align-self-start mr-3">
+                                                <img src="https://www.xplore-dna.net/theme/image.php/boost/page/1733774065/monologo" class="activityicon " alt="page icon">
+                                            </div>
+                                            <div class="media-body align-self-center">
+                                                <div class="activityname">
+                                                    <a href="https://www.xplore-dna.net/mod/page/view.php?id=14680" class=" aalink stretched-link" onclick="">
+                                                        <span class="instancename">ESP32 Code <span class="accesshide "> Textseite</span>
+                                                        </span>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="activity-info mt-1 mt-md-0">
+                                        <div data-region="activity-information" data-activityname="ESP32 Code" class="activity-information"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="description"></div>
+                        </div>
+                    </li>
+                    <li class="activity activity-wrapper page modtype_page  " id="module-14704" data-for="cmitem" data-id="14704" data-indexed="true">
+                        <div class="activity-item hiddenactivity" data-activityname="moodle html">
+                            <div class="activity-basis d-flex align-items-center">
+                                <div class="d-flex flex-column flex-md-row w-100 align-self-start">
+                                    <div class="activity-instance d-flex flex-column">
+                                        <div class="activitytitle media  conditionalhidden modtype_page position-relative align-self-start">
+                                            <div class="activityiconcontainer content courseicon align-self-start mr-3">
+                                                <img src="https://www.xplore-dna.net/theme/image.php/boost/page/1733774065/monologo" class="activityicon " alt="page icon">
+                                            </div>
+                                            <div class="media-body align-self-center">
+                                                <div class="activityname">
+                                                    <a href="https://www.xplore-dna.net/mod/page/view.php?id=14704" class=" conditionalhidden aalink stretched-link" onclick="">
+                                                        <span class="instancename">moodle html <span class="accesshide "> Textseite</span>
+                                                        </span>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="activity-info mt-1 mt-md-0">
+                                        <div data-region="activity-information" data-activityname="moodle html" class="activity-information"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="my-1 d-flex align-items-center">
+                                <span class="badge badge-pill badge-warning">Für Teilnehmer/innen verborgen</span>
+                            </div>
+                            <div class="description"></div>
+                        </div>
+                    </li>
+                    <li class="activity activity-wrapper page modtype_page  " id="module-15275" data-for="cmitem" data-id="15275" data-indexed="true">
+                        <div class="activity-item " data-activityname="...">
+                            <div class="activity-basis d-flex align-items-center">
+                                <div class="d-flex flex-column flex-md-row w-100 align-self-start">
+                                    <div class="activity-instance d-flex flex-column">
+                                        <div class="activitytitle media  modtype_page position-relative align-self-start">
+                                            <div class="activityiconcontainer content courseicon align-self-start mr-3">
+                                                <img src="https://www.xplore-dna.net/theme/image.php/boost/page/1733774065/monologo" class="activityicon " alt="page icon">
+                                            </div>
+                                            <div class="media-body align-self-center">
+                                                <div class="activityname">
+                                                    <a href="https://www.xplore-dna.net/mod/page/view.php?id=15275" class=" aalink stretched-link" onclick="">
+                                                        <span class="instancename">... <span class="accesshide "> Textseite</span>
+                                                        </span>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="activity-info mt-1 mt-md-0">
+                                        <div data-region="activity-information" data-activityname="..." class="activity-information"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="description"></div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </li>
+    </body>
+</html>

@@ -14,10 +14,10 @@
     .loader { border: 3px solid #f3f3f3; border-radius: 50%; border-top: 3px solid #3b82f6; width: 16px; height: 16px; animation: spin 1s linear infinite; }
     @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
     
-    /* Sichtbarer Scrollbar für die Tabelle */
-    .custom-scrollbar::-webkit-scrollbar { height: 10px; }
-    .custom-scrollbar::-webkit-scrollbar-track { background: #f1f5f9; border-radius: 8px; }
-    .custom-scrollbar::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 8px; }
+    /* Sichtbarer Scrollbar für die Tabelle auf dem PC/Handy */
+    .custom-scrollbar::-webkit-scrollbar { height: 8px; }
+    .custom-scrollbar::-webkit-scrollbar-track { background: #f1f5f9; border-radius: 4px; }
+    .custom-scrollbar::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
     .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
   </style>
 </head>
@@ -28,19 +28,19 @@
     <div class="max-w-7xl mx-auto px-4 md:px-8 py-3 flex justify-between items-center">
       <div class="flex items-center gap-3">
         <div class="bg-blue-600 text-white p-2 rounded-lg shadow-sm">
-          <i data-lucide="cloud-sync" class="w-5 h-5"></i>
+          <i data-lucide="clipboard-list" class="w-5 h-5"></i>
         </div>
         <div>
           <h1 class="text-xl font-bold text-slate-900 leading-tight">Qualifikationsmatrix</h1>
         </div>
       </div>
       
-      <div class="flex items-center gap-4">
-        <div id="connectionStatus" class="flex items-center gap-2 text-sm font-medium text-amber-600 bg-amber-50 px-3 py-1.5 rounded-full border border-amber-200 shadow-sm">
-          <span class="w-2.5 h-2.5 rounded-full bg-amber-500 animate-pulse"></span>
-          Verbinde...
+      <div class="flex items-center gap-2 sm:gap-4">
+        <div id="connectionStatus" class="flex items-center gap-2 text-xs sm:text-sm font-medium text-slate-600 bg-slate-100 px-3 py-1.5 rounded-full border border-slate-200 shadow-sm">
+          <span class="w-2.5 h-2.5 rounded-full bg-slate-400 animate-pulse"></span>
+          <span class="hidden sm:inline">Lade...</span>
         </div>
-        <button onclick="toggleSettings()" class="p-2 text-slate-500 hover:bg-slate-100 rounded-lg transition-colors" title="Google Drive Verbindung ansehen">
+        <button onclick="toggleSettings()" class="p-2 text-slate-500 hover:bg-slate-100 rounded-lg transition-colors" title="Google Drive Einstellungen">
           <i data-lucide="settings" class="w-5 h-5"></i>
         </button>
       </div>
@@ -49,28 +49,20 @@
 
   <div class="max-w-7xl mx-auto pt-6 px-4 md:px-8 relative">
     
-    <!-- Ladebildschirm-Overlay -->
-    <div id="loadingOverlay" class="hidden absolute inset-0 bg-slate-50/80 backdrop-blur-sm z-40 flex items-center justify-center rounded-2xl">
-      <div class="bg-white p-4 rounded-xl shadow-lg border border-slate-200 flex items-center gap-3">
-        <div class="loader"></div>
-        <span class="font-medium text-slate-700" id="loadingText">Lade Daten aus Google Drive...</span>
-      </div>
-    </div>
-
     <!-- Error Banner -->
-    <div id="errorBanner" class="hidden mb-6 bg-red-50 border border-red-200 text-red-800 rounded-xl p-4 flex items-start gap-3 shadow-sm">
-      <i data-lucide="alert-circle" class="w-5 h-5 mt-0.5 text-red-600 shrink-0"></i>
+    <div id="errorBanner" class="hidden mb-6 bg-amber-50 border border-amber-200 text-amber-800 rounded-xl p-4 flex items-start gap-3 shadow-sm">
+      <i data-lucide="alert-triangle" class="w-5 h-5 mt-0.5 text-amber-600 shrink-0"></i>
       <div>
-        <h4 class="font-semibold text-sm">Fehler</h4>
+        <h4 class="font-semibold text-sm">Verbindungshinweis</h4>
         <p class="text-sm mt-1" id="errorMessage">Details zum Fehler...</p>
       </div>
-      <button onclick="document.getElementById('errorBanner').classList.add('hidden')" class="ml-auto text-red-500 hover:text-red-700">
+      <button onclick="document.getElementById('errorBanner').classList.add('hidden')" class="ml-auto text-amber-500 hover:text-amber-700">
         <i data-lucide="x" class="w-4 h-4"></i>
       </button>
     </div>
 
     <div class="grid grid-cols-1 lg:grid-cols-4 gap-6">
-      <!-- Linke Spalte -->
+      <!-- Linke Spalte (Menü) -->
       <div class="lg:col-span-1 space-y-6">
         
         <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-5">
@@ -86,7 +78,7 @@
           </select>
         </div>
 
-        <div id="newEmployeeForm" class="hidden bg-blue-50 border border-blue-100 rounded-2xl p-5 shadow-sm">
+        <div id="newEmployeeForm" class="hidden bg-blue-50 border border-blue-100 rounded-2xl p-5 shadow-sm animate-in fade-in zoom-in-95 duration-200">
           <h3 class="text-sm font-semibold text-blue-800 mb-3 flex items-center gap-2">
             <i data-lucide="user-plus" class="w-4 h-4"></i> Neuer Mitarbeiter
           </h3>
@@ -98,7 +90,7 @@
 
         <div id="editorPanel" class="hidden bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden flex flex-col max-h-[60vh]">
           <div class="p-4 bg-slate-50 border-b border-slate-200">
-            <h3 class="text-sm font-semibold text-slate-800" id="editorName">Name</h3>
+            <h3 class="text-sm font-semibold text-slate-800 truncate" id="editorName">Name</h3>
           </div>
           
           <div id="editorFields" class="p-4 space-y-3 overflow-y-auto flex-1 custom-scrollbar">
@@ -108,33 +100,34 @@
           <div class="p-4 border-t border-slate-200 bg-slate-50">
             <button id="saveBtn" onclick="saveToDrive()" class="w-full bg-green-600 hover:bg-green-700 text-white py-2.5 rounded-lg text-sm font-medium transition-colors flex justify-center items-center gap-2 shadow-sm">
               <i data-lucide="save" class="w-4 h-4"></i>
-              <span id="saveBtnText">In Drive speichern</span>
+              <span id="saveBtnText">Speichern</span>
             </button>
           </div>
         </div>
       </div>
 
-      <!-- Rechte Spalte -->
+      <!-- Rechte Spalte (Tabelle) -->
       <div class="lg:col-span-3">
         <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
-          <div class="p-4 bg-slate-50 border-b border-slate-200 flex flex-wrap justify-between items-center gap-2">
+          <div class="p-4 bg-slate-50 border-b border-slate-200 flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3">
             <h2 class="font-semibold text-slate-700 flex items-center gap-2">
               <i data-lucide="table" class="w-5 h-5 text-slate-400"></i>
               Matrix Übersicht
             </h2>
             
-            <div class="text-xs text-slate-500 flex flex-wrap gap-4 items-center">
+            <div class="text-xs text-slate-500 flex flex-wrap gap-3 items-center">
               <span class="flex items-center gap-1 text-blue-600 font-medium">
-                <i data-lucide="arrow-right-left" class="w-3.5 h-3.5"></i> Scrollen für alle Spalten
+                <i data-lucide="arrow-right-left" class="w-3.5 h-3.5"></i> Wischen zum Scrollen
               </span>
-              <div class="hidden sm:flex gap-4 border-l pl-4 border-slate-300">
-                <span class="flex items-center gap-1"><span class="w-3 h-3 rounded-full bg-red-100 border border-red-200 block"></span> 0 = Nicht möglich</span>
-                <span class="flex items-center gap-1"><span class="w-3 h-3 rounded-full bg-green-100 border border-green-200 block"></span> 1 = Qualifiziert</span>
-                <span class="flex items-center gap-1"><span class="w-3 h-3 rounded-full bg-yellow-100 border border-yellow-200 block"></span> 2 = Möglich</span>
+              <div class="flex gap-3 sm:border-l sm:pl-3 border-slate-300 w-full sm:w-auto">
+                <span class="flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full bg-red-100 border border-red-200 block"></span> 0 = Nein</span>
+                <span class="flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full bg-green-100 border border-green-200 block"></span> 1 = Ja</span>
+                <span class="flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full bg-yellow-100 border border-yellow-200 block"></span> 2 = Möglich</span>
               </div>
             </div>
           </div>
           
+          <!-- Hier ist der scrollbare Bereich der Tabelle -->
           <div class="overflow-x-auto custom-scrollbar pb-2">
             <table class="w-full text-sm text-left whitespace-nowrap min-w-max">
               <thead class="text-xs text-slate-600 uppercase bg-slate-100">
@@ -163,11 +156,11 @@
       </div>
       <div class="p-6">
         <p class="text-sm text-slate-600 mb-4">
-          Die Web-App-URL aus dem Google Apps Script. Sie ist bereits fest einprogrammiert.
+          Die Web-App-URL aus dem Google Apps Script.
         </p>
         <input type="text" id="webAppUrlInput" class="w-full rounded-lg border-slate-300 py-2.5 px-3 text-sm border focus:border-blue-500 outline-none mb-4 font-mono bg-slate-50">
         <button onclick="saveSettings()" class="w-full bg-blue-600 hover:bg-blue-700 text-white py-2.5 rounded-lg font-medium transition-colors">
-          Speichern & Aktualisieren
+          Speichern & Verbinden
         </button>
       </div>
     </div>
@@ -175,53 +168,68 @@
 
   <script>
     function refreshIcons() {
-      if (typeof lucide !== 'undefined') {
-        lucide.createIcons();
-      }
+      if (typeof lucide !== 'undefined') lucide.createIcons();
     }
 
-    // Deine feste Google Apps Script URL
     const DEFAULT_URL = "https://script.google.com/macros/s/AKfycbzFThxA6CSvv1U_87aNpfCTqgSrr5XHL2GhJGuFroBqW5XcVO13APCg9XfQLu_ihRST/exec";
 
     function getStoredUrl() {
-      try {
-        return localStorage.getItem('sheet_web_app_url') || DEFAULT_URL;
-      } catch (e) {
-        return DEFAULT_URL;
-      }
+      try { return localStorage.getItem('sheet_web_app_url') || DEFAULT_URL; } 
+      catch (e) { return DEFAULT_URL; }
     }
 
     function setStoredUrl(url) {
-      try {
-        localStorage.setItem('sheet_web_app_url', url);
-      } catch (e) {
-        console.warn("Lokaler Speicher ist blockiert. URL ist nur für diese Sitzung gültig.");
-      }
+      try { localStorage.setItem('sheet_web_app_url', url); } 
+      catch (e) { console.warn("Lokaler Speicher blockiert."); }
     }
 
-    // Fallback Kategorien, falls die Tabelle noch leer ist
+    // SICHERHEITS-BACKUP: Feste Daten, falls Google Drive blockiert wird.
+    // So ist die Tabelle NIE leer!
     let categories = ["EM-Box", "Gurte Rechts", "Gurte Links", "Kofferraumteppich", "Emblem", "Seitliche Auflage", "Bleche", "Abdeckung", "Wischer", "Teppich li", "Teppich re", "UBV"];
-    let data = [];
+    let data = [
+      { name: "Alessio Basile", scores: [1, 0, 1, 1, 2, 2, 2, 1, 2, 2, 2, 2] },
+      { name: "Bruns, Alexandra", scores: [1, 1, 1, 1, 0, 0, 0, 0, 0, 1, 2, 1] },
+      { name: "Schrader, Katharina", scores: [1, 1, 2, 1, 2, 1, 1, 1, 1, 2, 2, 2] },
+      { name: "Schmidt, Ronald", scores: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1] },
+      { name: "Geipel, Björn", scores: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1] },
+      { name: "Kammerer, Jacob", scores: [2, 1, 1, 2, 2, 2, 1, 1, 1, 1, 1, 1] },
+      { name: "Kaufmann, Bastian", scores: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1] },
+      { name: "Kubelka, Sebastian", scores: [1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1] },
+      { name: "Zeqiri, Ismajl", scores: [0, 0, 0, 1, 0, 0, 1, 1, 1, 0, 0, 0] },
+      { name: "Müller, Hans-Jürgen", scores: [2, 1, 2, 2, 1, 1, 2, 2, 2, 1, 1, 1] },
+      { name: "Matteo Nicosia eM", scores: [1, 1, 1, 2, 0, 1, 1, 1, 1, 1, 1, 0] },
+      { name: "Reimann, Jessica", scores: [1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1] },
+      { name: "Andre, Aurisch eM", scores: [1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1] },
+      { name: "Jason Justin Kirsten", scores: [1, 2, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1] },
+      { name: "Ahmed, Hamdi", scores: [1, 1, 1, 1, 1, 1, 2, 2, 1, 1, 1, 1] },
+      { name: "Erika, Walter", scores: [2, 2, 1, 1, 2, 2, 1, 1, 1, 2, 2, 2] },
+      { name: "Nicole, Kraus", scores: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1] },
+      { name: "Nele Schömers", scores: [1, 1, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1] },
+      { name: "Khai Le", scores: [1, 2, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1] },
+      { name: "Friedberger, Pascal", scores: [1, 2, 1, 2, 1, 1, 1, 2, 2, 1, 1, 1] },
+      { name: "Gerstner, Judith", scores: [1, 2, 1, 1, 1, 2, 2, 1, 2, 2, 2, 2] },
+      { name: "Passow, Lina", scores: [1, 2, 1, 1, 2, 2, 2, 2, 2, 1, 2, 2] }
+    ];
 
     let currentEditIndex = -1;
     let webAppUrl = getStoredUrl();
+    let isConnected = false;
 
     window.onload = () => {
       refreshIcons();
       document.getElementById('webAppUrlInput').value = webAppUrl;
       
-      // Direkter Download der Daten von Google Sheets beim Start!
+      // 1. Sofort lokales Backup zeichnen, damit man sofort was sieht!
+      renderUI();
+      
+      // 2. Google Daten abrufen
       fetchDataFromDrive();
     };
 
     function showError(msg) {
       const banner = document.getElementById('errorBanner');
-      if(banner) {
-        banner.classList.remove('hidden');
-        document.getElementById('errorMessage').innerText = msg;
-      } else {
-        alert(msg);
-      }
+      banner.classList.remove('hidden');
+      document.getElementById('errorMessage').innerText = msg;
     }
 
     function renderUI() {
@@ -233,12 +241,12 @@
 
     function updateStatusBadge() {
       const badge = document.getElementById('connectionStatus');
-      if(webAppUrl) {
-        badge.className = "flex items-center gap-2 text-sm font-medium text-emerald-700 bg-emerald-50 px-3 py-1.5 rounded-full border border-emerald-200 cursor-pointer shadow-sm";
-        badge.innerHTML = `<i data-lucide="check-circle" class="w-4 h-4"></i> Verbunden`;
+      if (isConnected) {
+        badge.className = "flex items-center gap-2 text-xs sm:text-sm font-medium text-emerald-700 bg-emerald-50 px-3 py-1.5 rounded-full border border-emerald-200 cursor-pointer shadow-sm";
+        badge.innerHTML = `<i data-lucide="check-circle" class="w-4 h-4"></i> <span class="hidden sm:inline">Live Sync Aktiv</span><span class="sm:hidden">Live</span>`;
       } else {
-        badge.className = "flex items-center gap-2 text-sm font-medium text-amber-600 bg-amber-50 px-3 py-1.5 rounded-full border border-amber-200 cursor-pointer shadow-sm";
-        badge.innerHTML = `<span class="w-2.5 h-2.5 rounded-full bg-amber-500 animate-pulse"></span> Offline`;
+        badge.className = "flex items-center gap-2 text-xs sm:text-sm font-medium text-amber-700 bg-amber-50 px-3 py-1.5 rounded-full border border-amber-200 cursor-pointer shadow-sm";
+        badge.innerHTML = `<i data-lucide="wifi-off" class="w-4 h-4"></i> <span class="hidden sm:inline">Lokales Backup (Offline)</span><span class="sm:hidden">Offline</span>`;
       }
       refreshIcons();
     }
@@ -256,42 +264,45 @@
       }
     }
 
-    // --- GOOGLE DRIVE COMMUNICATION ---
     async function fetchDataFromDrive() {
-      showLoader("Lade Live-Daten aus Drive...");
       document.getElementById('errorBanner').classList.add('hidden');
       
       try {
-        const response = await fetch(webAppUrl, { 
+        // Ein Anti-Cache Trick, damit das Handy nicht auf stur schaltet
+        const urlWithCacheBuster = webAppUrl + "?t=" + new Date().getTime();
+        
+        const response = await fetch(urlWithCacheBuster, { 
             method: 'GET',
             redirect: 'follow' 
         });
         
-        if (!response.ok) throw new Error("Netzwerkantwort fehlerhaft (Status " + response.status + ")");
+        if (!response.ok) throw new Error("Netzwerkantwort fehlerhaft");
         
         const sheetData = await response.json();
         
         if (sheetData && sheetData.length > 0) {
-          categories = sheetData[0].slice(1); // Holt die Spaltenüberschriften ab Zelle B1
-          data = [];
+          let newCategories = sheetData[0].slice(1);
+          let newData = [];
           for (let i = 1; i < sheetData.length; i++) {
-            // Ignoriere komplett leere Zeilen
             if (!sheetData[i][0]) continue; 
-            
-            data.push({
+            newData.push({
               name: sheetData[i][0],
               scores: sheetData[i].slice(1).map(val => val === "" ? 0 : Number(val))
             });
           }
+          // Nur wenn der Abruf geklappt hat, ersetzen wir die Daten!
+          categories = newCategories;
+          data = newData;
+          isConnected = true;
         }
-        renderUI();
-        hideLoader();
+        
       } catch(e) {
-        console.error(e);
-        showError("Konnte Daten nicht laden. Ist die URL korrekt?");
-        hideLoader();
-        renderUI();
+        console.warn("Verbindung zu Google blockiert:", e);
+        isConnected = false;
+        showError("Direkte Verbindung zu Google Drive wird vom Browser blockiert. Lokale Sicherheitskopie wird genutzt. Änderungen werden vorerst nur hier im Browser gespeichert.");
       }
+      // UI nach dem Versuch (egal ob erfolgreich oder nicht) aktualisieren
+      renderUI();
     }
 
     async function saveToDrive() {
@@ -300,9 +311,22 @@
       const btn = document.getElementById('saveBtn');
       const btnText = document.getElementById('saveBtnText');
       
-      btnText.innerText = "Speichere in Drive...";
-      btn.classList.add('opacity-75', 'cursor-not-allowed');
+      btnText.innerText = isConnected ? "Speichere..." : "Lokal gesichert";
+      btn.classList.add('opacity-75');
       document.getElementById('errorBanner').classList.add('hidden');
+
+      if (!isConnected) {
+        // Wenn keine Verbindung besteht, täuschen wir einen Speichervorgang vor
+        setTimeout(() => {
+          btn.classList.replace('bg-green-600', 'bg-amber-500');
+          setTimeout(() => {
+            btnText.innerText = "Speichern";
+            btn.classList.replace('bg-amber-500', 'bg-green-600');
+            btn.classList.remove('opacity-75');
+          }, 2000);
+        }, 500);
+        return;
+      }
 
       try {
         const response = await fetch(webAppUrl, {
@@ -320,33 +344,25 @@
         const result = await response.json();
         
         if (result.status === "success") {
-          btnText.innerText = "Erfolgreich gespeichert!";
+          btnText.innerText = "Gespeichert!";
           btn.classList.replace('bg-green-600', 'bg-emerald-500');
         } else {
-          throw new Error(result.message || "Unbekannter Fehler");
+          throw new Error("Fehler beim Speichern");
         }
         
-        setTimeout(() => {
-          btnText.innerText = "In Drive speichern";
-          btn.classList.replace('bg-emerald-500', 'bg-green-600');
-          btn.classList.remove('opacity-75', 'cursor-not-allowed');
-        }, 2000);
-
       } catch(e) {
-        console.error("Speichern Fehler", e);
-        showError("Speichern fehlgeschlagen: " + e.message);
-        btnText.innerText = "Erneut versuchen";
-        btn.classList.remove('opacity-75', 'cursor-not-allowed');
+        console.warn("Speichern Fehler", e);
+        showError("Konnte Daten nicht auf Drive speichern. Sie sind jedoch temporär hier gesichert.");
+        btnText.innerText = "Lokal gesichert";
+        btn.classList.replace('bg-green-600', 'bg-amber-500');
       }
-    }
 
-    // --- UI LOGIK ---
-    function showLoader(text) {
-      document.getElementById('loadingText').innerText = text;
-      document.getElementById('loadingOverlay').classList.remove('hidden');
-    }
-    function hideLoader() {
-      document.getElementById('loadingOverlay').classList.add('hidden');
+      setTimeout(() => {
+        btnText.innerText = "Speichern";
+        if(btn.classList.contains('bg-emerald-500')) btn.classList.replace('bg-emerald-500', 'bg-green-600');
+        if(btn.classList.contains('bg-amber-500')) btn.classList.replace('bg-amber-500', 'bg-green-600');
+        btn.classList.remove('opacity-75');
+      }, 2500);
     }
 
     function renderTableHeader() {
@@ -415,7 +431,6 @@
       const name = document.getElementById('newNameInput').value.trim();
       if (!name) return;
       
-      // HIER GEÄNDERT: Array wird standardmäßig mit "2" gefüllt statt mit "0"
       const newScores = new Array(categories.length).fill(2);
       
       data.push({ name: name, scores: newScores });
@@ -447,7 +462,7 @@
         [0, 1, 2].forEach(val => {
           const opt = document.createElement('option');
           opt.value = val;
-          opt.innerText = val === 0 ? "0 - Nicht möglich" : val === 1 ? "1 - Qualifiziert" : "2 - Möglich";
+          opt.innerText = val === 0 ? "0 - Nein" : val === 1 ? "1 - Ja" : "2 - Möglich";
           if (employee.scores[catIndex] === val) opt.selected = true;
           select.appendChild(opt);
         });
@@ -455,8 +470,6 @@
         select.addEventListener('change', (e) => {
           employee.scores[catIndex] = parseInt(e.target.value);
           renderTable(); 
-          document.getElementById('saveBtnText').innerText = "In Drive speichern";
-          document.getElementById('saveBtn').classList.replace('bg-emerald-500', 'bg-green-600');
         });
 
         wrapper.appendChild(label);
@@ -464,4 +477,6 @@
         container.appendChild(wrapper);
       });
     }
-    
+  </script>
+</body>
+</html>

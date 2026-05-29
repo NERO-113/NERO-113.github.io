@@ -27,10 +27,6 @@
     </div>
     <h1 class="text-2xl font-bold text-slate-900">Mitarbeiter Portal</h1>
     <p class="text-slate-500 mt-1">Qualifikationsmatrix</p>
-    
-    <button onclick="toggleSettings()" class="absolute top-0 right-0 p-2 text-slate-300 hover:text-slate-500 transition-colors" title="Setup">
-      <i data-lucide="settings" class="w-5 h-5"></i>
-    </button>
   </div>
 
   <div class="max-w-md w-full bg-white rounded-3xl shadow-lg border border-slate-200 overflow-hidden relative">
@@ -83,9 +79,9 @@
 
       <div class="p-6 overflow-y-auto flex-1 custom-scrollbar">
         <p class="text-sm text-slate-600 mb-6 bg-blue-50 p-3 rounded-lg border border-blue-100">
-          Trage Werte zwischen <b>1 und 15</b> ein. <br>
-          1 = mag ich gar nicht <br>
-          15 = mag ich sehr <br>
+          Trage Werte zwischen <b>1 und 15</b> ein.<br>
+          1 = mag ich gar nicht<br>
+          15 = mag ich sehr<br>
           <i>Hinweis: Der höchste eingetragene Wert wird immer auf 15 skaliert, der Rest ordnet sich lückenlos darunter an.</i>
         </p>
         
@@ -103,20 +99,6 @@
 
   </div>
 
-  <div id="settingsModal" class="hidden fixed inset-0 z-50 bg-slate-900/50 backdrop-blur-sm flex items-center justify-center p-4">
-    <div class="bg-white rounded-2xl shadow-xl max-w-md w-full overflow-hidden">
-      <div class="p-5 border-b border-slate-200 flex justify-between items-center bg-slate-50">
-        <h2 class="font-bold text-slate-800 flex items-center gap-2"><i data-lucide="link" class="text-blue-600 w-5 h-5"></i> Setup: Drive URL</h2>
-        <button onclick="toggleSettings()" class="text-slate-400 hover:text-slate-600"><i data-lucide="x"></i></button>
-      </div>
-      <div class="p-6">
-        <p class="text-sm text-slate-600 mb-4">Hier die Google Apps Script Web-App-URL der Tabelle einfügen.</p>
-        <input type="text" id="webAppUrlInput" class="w-full rounded-xl border-slate-300 py-3 px-3 text-sm border font-mono bg-slate-50 mb-4 outline-none focus:border-blue-500">
-        <button onclick="saveSettings()" class="w-full bg-slate-800 hover:bg-slate-900 text-white py-3 rounded-xl font-medium">Verbinden</button>
-      </div>
-    </div>
-  </div>
-
   <script>
     function refreshIcons() { if (typeof lucide !== 'undefined') lucide.createIcons(); }
 
@@ -128,27 +110,14 @@
     // DEINE FEST EINGETRAGENE URL:
     const DEFAULT_URL = "https://script.google.com/macros/s/AKfycbw0LCf0Wkx8XFRFte5opWeG19JQx1NqELRbWzTv-YmK5jLmjdWHHlRnFUUSBXm0RVVj/exec"; 
 
-    function getStoredUrl() { return localStorage.getItem('sheet_web_app_url') || DEFAULT_URL; }
-    function setStoredUrl(url) { try { localStorage.setItem('sheet_web_app_url', url); } catch (e) {} }
-
     window.onload = () => {
       refreshIcons();
-      document.getElementById('webAppUrlInput').value = getStoredUrl();
       fetchDataFromDrive();
       
       document.getElementById('passwordInput').addEventListener('keypress', function(e) {
         if (e.key === 'Enter') handleLogin();
       });
     };
-
-    // --- SETUP & SETTINGS ---
-    function toggleSettings() { document.getElementById('settingsModal').classList.toggle('hidden'); }
-    function saveSettings() {
-      const url = document.getElementById('webAppUrlInput').value.trim();
-      setStoredUrl(url);
-      toggleSettings();
-      if(url) fetchDataFromDrive();
-    }
 
     // --- UI HELPER ---
     function showLoader(text) { 
@@ -166,17 +135,11 @@
 
     // --- DATEN LADEN ---
     async function fetchDataFromDrive() {
-      const url = getStoredUrl();
-      if (!url) {
-        showLoginError("System nicht eingerichtet. Bitte auf das Zahnrad-Symbol oben rechts tippen für das Setup.");
-        return;
-      }
-
       showLoader("Lade Mitarbeiterdaten...");
       hideLoginError();
       
       try {
-        const response = await fetch(url, { method: 'GET', redirect: 'follow' });
+        const response = await fetch(DEFAULT_URL, { method: 'GET', redirect: 'follow' });
         if (!response.ok) throw new Error("Netzwerkfehler");
         const sheetData = await response.json();
         
@@ -196,7 +159,7 @@
         }
       } catch(e) {
         console.error(e);
-        showLoginError("Verbindung fehlgeschlagen. Ist die URL korrekt?");
+        showLoginError("Verbindung fehlgeschlagen. Bitte überprüfe deine Internetverbindung.");
       } finally {
         hideLoader();
       }
@@ -271,7 +234,7 @@
         input.min = "1";
         input.max = "15";
         input.step = "1";
-        input.inputMode = "numeric"; // Zeigt auf Handys direkt den Ziffernblock an
+        input.inputMode = "numeric"; 
         
         let currentVal = currentUser.scores[catIndex] || 1;
         if(currentVal < 1) currentVal = 1;
@@ -280,7 +243,6 @@
         input.value = currentVal;
         input.className = "score-input w-full text-center text-lg font-bold rounded-lg border-slate-300 bg-slate-50 py-2 border focus:border-blue-500 focus:bg-white outline-none transition-all text-blue-700";
         
-        // Direkte Validierung bei Eingabe
         input.addEventListener('input', (e) => {
           let val = parseInt(e.target.value);
           if (val > 15) e.target.value = 15; 
@@ -309,7 +271,7 @@
       refreshIcons();
     }
 
-    // --- GAP CLOSING ALGORITHM (FIXIERT) ---
+    // --- GAP CLOSING ALGORITHM (FIXIERT AUF 15) ---
     function closeGaps(scoresArray) {
       // 1. Alle einzigartigen Werte finden und absteigend sortieren
       const uniqueSorted = [...new Set(scoresArray)].sort((a, b) => b - a);
@@ -333,7 +295,6 @@
       if (!currentUser) return;
       
       const btn = document.getElementById('saveBtn');
-      const url = getStoredUrl();
       
       btn.innerHTML = `<div class="loader w-5 h-5 border-white border-t-white/30"></div> <span>Speichere...</span>`;
       btn.classList.add('opacity-80', 'cursor-not-allowed');
@@ -341,14 +302,14 @@
       // --- WENDE LÜCKENSCHLIESSER AN ---
       currentUser.scores = closeGaps(currentUser.scores);
 
-      // Aktualisiere die UI-Inputs, damit der Mitarbeiter die Änderung sofort sieht
+      // Aktualisiere die UI-Inputs sofort
       const inputs = document.querySelectorAll('.score-input');
       inputs.forEach((input, index) => {
         input.value = currentUser.scores[index];
       });
 
       try {
-        const response = await fetch(url, {
+        const response = await fetch(DEFAULT_URL, {
           method: 'POST',
           redirect: 'follow',
           headers: { 'Content-Type': 'text/plain;charset=utf-8' },

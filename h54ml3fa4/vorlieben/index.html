@@ -21,6 +21,7 @@
 </head>
 <body class="bg-slate-100 text-slate-800 font-sans min-h-screen flex flex-col items-center py-10 px-4">
 
+  <!-- Header -->
   <div class="max-w-md w-full mb-8 text-center relative">
     <div class="inline-flex items-center justify-center bg-blue-600 text-white p-3 rounded-2xl shadow-md mb-4">
       <i data-lucide="shield-check" class="w-8 h-8"></i>
@@ -28,23 +29,28 @@
     <h1 class="text-2xl font-bold text-slate-900">Mitarbeiter Portal</h1>
     <p class="text-slate-500 mt-1">Qualifikationsmatrix</p>
     
+    <!-- Setup-Button (Zahnrad) -->
     <button onclick="toggleSettings()" class="absolute top-0 right-0 p-2 text-slate-300 hover:text-slate-500 transition-colors" title="Setup">
       <i data-lucide="settings" class="w-5 h-5"></i>
     </button>
   </div>
 
+  <!-- Main Container -->
   <div class="max-w-md w-full bg-white rounded-3xl shadow-lg border border-slate-200 overflow-hidden relative">
     
+    <!-- Lade-Overlay -->
     <div id="loadingOverlay" class="absolute inset-0 bg-white/90 backdrop-blur-sm z-40 flex flex-col items-center justify-center hidden">
       <div class="loader mb-3"></div>
       <span class="font-medium text-slate-600 text-sm" id="loadingText">Lade Daten...</span>
     </div>
 
+    <!-- 1. LOGIN BEREICH -->
     <div id="loginView" class="p-8">
       <h2 class="text-lg font-semibold text-slate-800 mb-6 flex items-center gap-2">
         <i data-lucide="log-in" class="w-5 h-5 text-blue-600"></i> Anmeldung
       </h2>
 
+      <!-- Fehleranzeige -->
       <div id="loginError" class="hidden mb-4 p-3 bg-red-50 border border-red-200 text-red-700 text-sm rounded-xl flex items-start gap-2">
         <i data-lucide="alert-circle" class="w-4 h-4 mt-0.5 shrink-0"></i>
         <span id="loginErrorText">Fehler</span>
@@ -55,7 +61,8 @@
           <label class="block text-sm font-medium text-slate-700 mb-1.5">Dein Name</label>
           <select id="userSelect" class="w-full rounded-xl border-slate-300 bg-slate-50 py-3 px-4 text-slate-700 border focus:border-blue-500 focus:bg-white outline-none transition-all cursor-pointer">
             <option value="-1">Bitte auswählen...</option>
-            </select>
+            <!-- Optionen per JS -->
+          </select>
         </div>
 
         <div>
@@ -70,7 +77,9 @@
     </div>
 
 
+    <!-- 2. EDITOR BEREICH (Nach Login sichtbar) -->
     <div id="editorView" class="hidden flex flex-col h-[70vh]">
+      <!-- Header -->
       <div class="bg-slate-50 p-6 border-b border-slate-200 flex justify-between items-center shrink-0">
         <div>
           <p class="text-xs text-slate-500 font-medium uppercase tracking-wider mb-1">Angemeldet als</p>
@@ -81,6 +90,7 @@
         </button>
       </div>
 
+      <!-- Editor Felder (Scrollbar) -->
       <div class="p-6 overflow-y-auto flex-1 custom-scrollbar">
         <p class="text-sm text-slate-600 mb-6 bg-blue-50 p-3 rounded-lg border border-blue-100">
           Trage Werte zwischen <b>1 und 15</b> ein. <br>
@@ -88,9 +98,11 @@
         </p>
         
         <div id="editorFields" class="space-y-3">
-          </div>
+          <!-- Felder werden per JS generiert -->
+        </div>
       </div>
       
+      <!-- Footer Button -->
       <div class="p-6 border-t border-slate-200 bg-white shrink-0">
         <button id="saveBtn" onclick="saveData()" class="w-full bg-green-600 hover:bg-green-700 text-white font-medium py-3 rounded-xl transition-colors shadow-sm flex justify-center items-center gap-2">
           <i data-lucide="save" class="w-5 h-5"></i>
@@ -101,6 +113,7 @@
 
   </div>
 
+  <!-- Settings Modal (Setup) -->
   <div id="settingsModal" class="hidden fixed inset-0 z-50 bg-slate-900/50 backdrop-blur-sm flex items-center justify-center p-4">
     <div class="bg-white rounded-2xl shadow-xl max-w-md w-full overflow-hidden">
       <div class="p-5 border-b border-slate-200 flex justify-between items-center bg-slate-50">
@@ -123,8 +136,8 @@
     let currentUser = null;
     let currentUserIndex = -1;
 
-    // HIER DIE NEUE GOOGLE SCRIPT URL EINTRAGEN:
-    const DEFAULT_URL = ""; 
+    // DEINE FEST EINGETRAGENE URL:
+    const DEFAULT_URL = "https://script.google.com/macros/s/AKfycbw0LCf0Wkx8XFRFte5opWeG19JQx1NqELRbWzTv-YmK5jLmjdWHHlRnFUUSBXm0RVVj/exec"; 
 
     function getStoredUrl() { return localStorage.getItem('sheet_web_app_url') || DEFAULT_URL; }
     function setStoredUrl(url) { try { localStorage.setItem('sheet_web_app_url', url); } catch (e) {} }

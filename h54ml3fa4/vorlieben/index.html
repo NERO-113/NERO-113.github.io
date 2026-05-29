@@ -28,8 +28,8 @@
     <h1 class="text-2xl font-bold text-slate-900">Mitarbeiter Portal</h1>
     <p class="text-slate-500 mt-1">Qualifikationsmatrix</p>
     
-    <button ondblclick="toggleSettings()" class="absolute top-0 right-0 p-2 text-transparent hover:text-slate-300 transition-colors" title="Setup">
-      <i data-lucide="settings" class="w-4 h-4"></i>
+    <button onclick="toggleSettings()" class="absolute top-0 right-0 p-2 text-slate-300 hover:text-slate-500 transition-colors" title="Setup">
+      <i data-lucide="settings" class="w-5 h-5"></i>
     </button>
   </div>
 
@@ -166,7 +166,7 @@
     async function fetchDataFromDrive() {
       const url = getStoredUrl();
       if (!url) {
-        showLoginError("System nicht eingerichtet. Bitte doppelklick auf 'Qualifikationsmatrix' oben für das Setup.");
+        showLoginError("System nicht eingerichtet. Bitte auf das Zahnrad-Symbol oben rechts tippen für das Setup.");
         return;
       }
 
@@ -270,6 +270,7 @@
         input.min = "1";
         input.max = "15";
         input.step = "1";
+        input.inputMode = "numeric"; // Zeigt auf Handys direkt den Ziffernblock an
         
         let currentVal = currentUser.scores[catIndex] || 1;
         if(currentVal < 1) currentVal = 1;

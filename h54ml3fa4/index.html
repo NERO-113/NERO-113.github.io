@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Qualifikationsmatrix Live-Sync</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    th, td { border: 1px solid #e2e8f0; }
+    .score-0 { background-color: #fee2e2; color: #991b1b; font-weight: bold; }
+    .score-1 { background-color: #dcfce7; color: #166534; font-weight: bold; }
+    .score-2 { background-color: #fef08a; color: #854d0e; font-weight: bold; }
+    .loader { border: 3px solid #f3f3f3; border-radius: 50%; border-top: 3px solid #3b82f6; width: 16px; height: 16px; animation: spin 1s linear infinite; }
+    @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans min-h-screen pb-12">
+
+  <!-- Status Bar & Header -->
+  <div class="bg-white border-b border-slate-200 sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 md:px-8 py-3 flex justify-between items-center">
+      <div class="flex items-center gap-3">
+        <div class="bg-blue-600 text-white p-2 rounded-lg shadow-sm">
+          <i data-lucide="cloud-sync" class="w-5 h-5"></i>
+        </div>
+        <div>
+          <h1 class="text-xl font-bold text-slate-900 leading-tight">Qualifikationsmatrix</h1>
+        </div>
+      </div>
+      
+      <div class="flex items-center gap-4">
+        <div id="connectionStatus" class="flex items-center gap-2 text-sm font-medium text-amber-600 bg-amber-50 px-3 py-1.5 rounded-full border border-amber-200">
+          <span class="w-2.5 h-2.5 rounded-full bg-amber-500 animate-pulse"></span>
+          Verbinde...
+        </div>
+        <button onclick="toggleSettings()" class="p-2 text-slate-500 hover:bg-slate-100 rounded-lg transition-colors" title="Google Drive Verbindung ansehen">
+          <i data-lucide="settings" class="w-5 h-5"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="max-w-7xl mx-auto pt-6 px-4 md:px-8 relative">
+    
+    <!-- Ladebildschirm-Overlay -->
+    <div id="loadingOverlay" class="hidden absolute inset-0 bg-slate-50/80 backdrop-blur-sm z-40 flex items-center justify-center rounded-2xl">
+      <div class="bg-white p-4 rounded-xl shadow-lg border border-slate-200 flex items-center gap-3">
+        <div class="loader"></div>
+        <span class="font-medium text-slate-700" id="loadingText">Lade Daten aus Google Drive...</span>
+      </div>
+    </div>
+
+    <!-- Error Banner -->
+    <div id="errorBanner" class="hidden mb-6 bg-red-50 border border-red-200 text-red-800 rounded-xl p-4 flex items-start gap-3 shadow-sm">
+      <i data-lucide="alert-circle" class="w-5 h-5 mt-0.5 text-red-600 shrink-0"></i>
+      <div>
+        <h4 class="font-semibold text-sm">Fehler</h4>
+        <p class="text-sm mt-1" id="errorMessage">Details zum Fehler...</p>
+      </div>
+      <button onclick="document.getElementById('errorBanner').classList.add('hidden')" class="ml-auto text-red-500 hover:text-red-700">
+        <i data-lucide="x" class="w-4 h-4"></i>
+      </button>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-4 gap-6">
+      <!-- Linke Spalte -->
+      <div class="lg:col-span-1 space-y-6">
+        
+        <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-5">
+          <label for="employeeSelect" class="block text-sm font-semibold text-slate-700 mb-2 flex items-center gap-2">
+            <i data-lucide="user-search" class="w-4 h-4 text-blue-600"></i> Mitarbeiter wählen
+          </label>
+          <select id="employeeSelect" onchange="handleSelectChange()" class="w-full rounded-xl border-slate-300 bg-slate-50 py-2.5 px-3 text-slate-700 border focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none transition-all">
+            <option value="-1">Bitte wählen...</option>
+            <optgroup id="employeeList" label="Vorhandene Mitarbeiter"></optgroup>
+            <optgroup label="Aktionen">
+              <option value="NEW">+ Neu hinzufügen...</option>
+            </optgroup>
+          </select>
+        </div>
+
+        <div id="newEmployeeForm" class="hidden bg-blue-50 border border-blue-100 rounded-2xl p-5 shadow-sm">
+          <h3 class="text-sm font-semibold text-blue-800 mb-3 flex items-center gap-2">
+            <i data-lucide="user-plus" class="w-4 h-4"></i> Neuer Mitarbeiter
+          </h3>
+          <input type="text" id="newNameInput" placeholder="Name, Vorname" class="w-full rounded-lg border-slate-300 py-2 px-3 text-sm border mb-3 focus:border-blue-500 outline-none">
+          <button onclick="addNewEmployee()" class="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg text-sm font-medium transition-colors">
+            Anlegen & Speichern
+          </button>
+        </div>
+
+        <div id="editorPanel" class="hidden bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden flex flex-col max-h-[60vh]">
+          <div class="p-4 bg-slate-50 border-b border-slate-200">
+            <h3 class="text-sm font-semibold text-slate-800" id="editorName">Name</h3>
+          </div>
+          
+          <div id="editorFields" class="p-4 space-y-3 overflow-y-auto flex-1">
+            <!-- Felder per JS -->
+          </div>
+
+          <div class="p-4 border-t border-slate-200 bg-slate-50">
+            <button id="saveBtn" onclick="saveToDrive()" class="w-full bg-green-600 hover:bg-green-700 text-white py-2.5 rounded-lg text-sm font-medium transition-colors flex justify-center items-center gap-2 shadow-sm">
+              <i data-lucide="save" class="w-4 h-4"></i>
+              <span id="saveBtnText">In Drive speichern</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Rechte Spalte -->
+      <div class="lg:col-span-3">
+        <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+          <div class="p-4 bg-slate-50 border-b border-slate-200 flex justify-between items-center">
+            <h2 class="font-semibold text-slate-700 flex items-center gap-2">
+              <i data-lucide="table" class="w-5 h-5 text-slate-400"></i>
+              Matrix Übersicht
+            </h2>
+            <div class="text-xs text-slate-500 flex gap-4 hidden sm:flex">
+              <span class="flex items-center gap-1"><span class="w-3 h-3 rounded-full bg-red-100 border border-red-200 block"></span> 0 = Nicht möglich</span>
+              <span class="flex items-center gap-1"><span class="w-3 h-3 rounded-full bg-green-100 border border-green-200 block"></span> 1 = Qualifiziert</span>
+              <span class="flex items-center gap-1"><span class="w-3 h-3 rounded-full bg-yellow-100 border border-yellow-200 block"></span> 2 = Möglich</span>
+            </div>
+          </div>
+          <div class="overflow-x-auto">
+            <table class="w-full text-sm text-left whitespace-nowrap">
+              <thead class="text-xs text-slate-600 uppercase bg-slate-100">
+                <tr id="tableHeader">
+                  <th class="px-4 py-3 sticky left-0 bg-slate-100 z-10 shadow-[1px_0_0_0_#e2e8f0]">Name</th>
+                </tr>
+              </thead>
+              <tbody id="tableBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Settings Modal -->
+  <div id="settingsModal" class="hidden fixed inset-0 z-50 bg-slate-900/50 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-white rounded-2xl shadow-xl max-w-lg w-full overflow-hidden">
+      <div class="p-5 border-b border-slate-200 flex justify-between items-center bg-slate-50">
+        <h2 class="font-bold text-slate-800 flex items-center gap-2">
+          <i data-lucide="link" class="text-blue-600"></i> Drive Verbindung
+        </h2>
+        <button onclick="toggleSettings()" class="text-slate-400 hover:text-slate-600">
+          <i data-lucide="x"></i>
+        </button>
+      </div>
+      <div class="p-6">
+        <p class="text-sm text-slate-600 mb-4">
+          Die Web-App-URL aus dem Google Apps Script. Sie ist bereits fest einprogrammiert.
+        </p>
+        <input type="text" id="webAppUrlInput" class="w-full rounded-lg border-slate-300 py-2.5 px-3 text-sm border focus:border-blue-500 outline-none mb-4 font-mono bg-slate-50">
+        <button onclick="saveSettings()" class="w-full bg-blue-600 hover:bg-blue-700 text-white py-2.5 rounded-lg font-medium transition-colors">
+          Speichern & Aktualisieren
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function refreshIcons() {
+      if (typeof lucide !== 'undefined') {
+        lucide.createIcons();
+      }
+    }
+
+    // Deine feste Google Apps Script URL
+    const DEFAULT_URL = "https://script.google.com/macros/s/AKfycbzFThxA6CSvv1U_87aNpfCTqgSrr5XHL2GhJGuFroBqW5XcVO13APCg9XfQLu_ihRST/exec";
+
+    function getStoredUrl() {
+      try {
+        return localStorage.getItem('sheet_web_app_url') || DEFAULT_URL;
+      } catch (e) {
+        return DEFAULT_URL;
+      }
+    }
+
+    function setStoredUrl(url) {
+      try {
+        localStorage.setItem('sheet_web_app_url', url);
+      } catch (e) {
+        console.warn("Lokaler Speicher ist blockiert. URL ist nur für diese Sitzung gültig.");
+      }
+    }
+
+    // Fallback Kategorien, falls die Tabelle noch leer ist
+    let categories = ["EM-Box", "Gurte Rechts", "Gurte Links", "Kofferraumteppich", "Emblem", "Seitliche Auflage", "Bleche", "Abdeckung", "Wischer", "Teppich li", "Teppich re", "UBV"];
+    let data = [];
+
+    let currentEditIndex = -1;
+    let webAppUrl = getStoredUrl();
+
+    window.onload = () => {
+      refreshIcons();
+      document.getElementById('webAppUrlInput').value = webAppUrl;
+      
+      // Direkter Download der Daten von Google Sheets beim Start!
+      fetchDataFromDrive();
+    };
+
+    function showError(msg) {
+      const banner = document.getElementById('errorBanner');
+      if(banner) {
+        banner.classList.remove('hidden');
+        document.getElementById('errorMessage').innerText = msg;
+      } else {
+        alert(msg);
+      }
+    }
+
+    function renderUI() {
+      renderTableHeader();
+      renderTable();
+      renderDropdown();
+      updateStatusBadge();
+    }
+
+    function updateStatusBadge() {
+      const badge = document.getElementById('connectionStatus');
+      if(webAppUrl) {
+        badge.className = "flex items-center gap-2 text-sm font-medium text-emerald-700 bg-emerald-50 px-3 py-1.5 rounded-full border border-emerald-200 cursor-pointer";
+        badge.innerHTML = `<i data-lucide="check-circle" class="w-4 h-4"></i> Verbunden`;
+      } else {
+        badge.className = "flex items-center gap-2 text-sm font-medium text-amber-600 bg-amber-50 px-3 py-1.5 rounded-full border border-amber-200 cursor-pointer";
+        badge.innerHTML = `<span class="w-2.5 h-2.5 rounded-full bg-amber-500 animate-pulse"></span> Offline`;
+      }
+      refreshIcons();
+    }
+
+    function toggleSettings() {
+      document.getElementById('settingsModal').classList.toggle('hidden');
+    }
+
+    function saveSettings() {
+      webAppUrl = document.getElementById('webAppUrlInput').value.trim();
+      setStoredUrl(webAppUrl);
+      toggleSettings();
+      if(webAppUrl) {
+        fetchDataFromDrive();
+      }
+    }
+
+    // --- GOOGLE DRIVE COMMUNICATION ---
+    async function fetchDataFromDrive() {
+      showLoader("Lade Live-Daten aus Drive...");
+      document.getElementById('errorBanner').classList.add('hidden');
+      
+      try {
+        const response = await fetch(webAppUrl, { 
+            method: 'GET',
+            redirect: 'follow' 
+        });
+        
+        if (!response.ok) throw new Error("Netzwerkantwort fehlerhaft (Status " + response.status + ")");
+        
+        const sheetData = await response.json();
+        
+        if (sheetData && sheetData.length > 0) {
+          categories = sheetData[0].slice(1);
+          data = [];
+          for (let i = 1; i < sheetData.length; i++) {
+            // Ignoriere leere Zeilen
+            if (!sheetData[i][0]) continue; 
+            
+            data.push({
+              name: sheetData[i][0],
+              scores: sheetData[i].slice(1).map(val => val === "" ? 0 : Number(val))
+            });
+          }
+        }
+        renderUI();
+        hideLoader();
+      } catch(e) {
+        console.error(e);
+        showError("Konnte Daten nicht laden. Ist die URL korrekt?");
+        hideLoader();
+        renderUI();
+      }
+    }
+
+    async function saveToDrive() {
+      if (currentEditIndex === -1) return;
+      const employee = data[currentEditIndex];
+      const btn = document.getElementById('saveBtn');
+      const btnText = document.getElementById('saveBtnText');
+      
+      btnText.innerText = "Speichere in Drive...";
+      btn.classList.add('opacity-75', 'cursor-not-allowed');
+      document.getElementById('errorBanner').classList.add('hidden');
+
+      try {
+        const response = await fetch(webAppUrl, {
+          method: 'POST',
+          redirect: 'follow',
+          headers: {
+            'Content-Type': 'text/plain;charset=utf-8' // WICHTIG für Google Apps Script
+          },
+          body: JSON.stringify({
+            name: employee.name,
+            scores: employee.scores
+          })
+        });
+        
+        const result = await response.json();
+        
+        if (result.status === "success") {
+          btnText.innerText = "Erfolgreich gespeichert!";
+          btn.classList.replace('bg-green-600', 'bg-emerald-500');
+        } else {
+          throw new Error(result.message || "Unbekannter Fehler");
+        }
+        
+        setTimeout(() => {
+          btnText.innerText = "In Drive speichern";
+          btn.classList.replace('bg-emerald-500', 'bg-green-600');
+          btn.classList.remove('opacity-75', 'cursor-not-allowed');
+        }, 2000);
+
+      } catch(e) {
+        console.error("Speichern Fehler", e);
+        showError("Speichern fehlgeschlagen: " + e.message);
+        btnText.innerText = "Erneut versuchen";
+        btn.classList.remove('opacity-75', 'cursor-not-allowed');
+      }
+    }
+
+    // --- UI LOGIK ---
+    function showLoader(text) {
+      document.getElementById('loadingText').innerText = text;
+      document.getElementById('loadingOverlay').classList.remove('hidden');
+    }
+    function hideLoader() {
+      document.getElementById('loadingOverlay').classList.add('hidden');
+    }
+
+    function renderTableHeader() {
+      const tr = document.getElementById('tableHeader');
+      tr.innerHTML = '<th class="px-4 py-3 sticky left-0 bg-slate-100 z-10 shadow-[1px_0_0_0_#e2e8f0]">Name</th>';
+      categories.forEach(cat => {
+        const th = document.createElement('th');
+        th.className = "px-3 py-3 font-medium text-center bg-slate-100";
+        th.innerText = cat;
+        tr.appendChild(th);
+      });
+    }
+
+    function renderTable() {
+      const tbody = document.getElementById('tableBody');
+      tbody.innerHTML = '';
+      data.forEach((employee, index) => {
+        const tr = document.createElement('tr');
+        tr.className = "hover:bg-slate-50 transition-colors " + (currentEditIndex === index ? "bg-blue-50/50" : "bg-white");
+        
+        const tdName = document.createElement('td');
+        tdName.className = "px-4 py-2 font-medium text-slate-900 sticky left-0 z-10 shadow-[1px_0_0_0_#e2e8f0] " + (currentEditIndex === index ? "bg-blue-50" : "bg-white");
+        tdName.innerText = employee.name;
+        tr.appendChild(tdName);
+
+        employee.scores.forEach(score => {
+          const td = document.createElement('td');
+          td.className = `px-3 py-2 text-center score-${score}`;
+          td.innerText = score;
+          tr.appendChild(td);
+        });
+        tbody.appendChild(tr);
+      });
+    }
+
+    function renderDropdown() {
+      const group = document.getElementById('employeeList');
+      group.innerHTML = '';
+      data.forEach((emp, index) => {
+        const opt = document.createElement('option');
+        opt.value = index;
+        opt.innerText = emp.name;
+        group.appendChild(opt);
+      });
+      if(currentEditIndex >= 0) document.getElementById('employeeSelect').value = currentEditIndex;
+    }
+
+    function handleSelectChange() {
+      const val = document.getElementById('employeeSelect').value;
+      document.getElementById('newEmployeeForm').classList.add('hidden');
+      document.getElementById('editorPanel').classList.add('hidden');
+      currentEditIndex = -1;
+
+      if (val === 'NEW') {
+        document.getElementById('newEmployeeForm').classList.remove('hidden');
+        document.getElementById('newNameInput').focus();
+      } else if (val !== '-1') {
+        currentEditIndex = parseInt(val);
+        document.getElementById('editorPanel').classList.remove('hidden');
+        openEditor(currentEditIndex);
+      }
+      renderTable();
+    }
+
+    function addNewEmployee() {
+      const name = document.getElementById('newNameInput').value.trim();
+      if (!name) return;
+      const newScores = new Array(categories.length).fill(0);
+      data.push({ name: name, scores: newScores });
+      document.getElementById('newNameInput').value = '';
+      currentEditIndex = data.length - 1;
+      renderUI();
+      document.getElementById('employeeSelect').value = currentEditIndex;
+      handleSelectChange();
+      saveToDrive();
+    }
+
+    function openEditor(index) {
+      const employee = data[index];
+      document.getElementById('editorName').innerText = `Bearbeite: ${employee.name}`;
+      const container = document.getElementById('editorFields');
+      container.innerHTML = '';
+
+      categories.forEach((cat, catIndex) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = "flex justify-between items-center border-b border-slate-100 pb-2 last:border-0";
+        
+        const label = document.createElement('label');
+        label.className = "text-sm text-slate-700 w-1/2 truncate pr-2";
+        label.innerText = cat;
+
+        const select = document.createElement('select');
+        select.className = "text-sm rounded border border-slate-300 bg-white px-2 py-1.5 outline-none focus:border-blue-500 w-1/2 cursor-pointer font-medium";
+        
+        [0, 1, 2].forEach(val => {
+          const opt = document.createElement('option');
+          opt.value = val;
+          opt.innerText = val === 0 ? "0 - Nicht möglich" : val === 1 ? "1 - Qualifiziert" : "2 - Möglich";
+          if (employee.scores[catIndex] === val) opt.selected = true;
+          select.appendChild(opt);
+        });
+
+        select.addEventListener('change', (e) => {
+          employee.scores[catIndex] = parseInt(e.target.value);
+          renderTable(); 
+          document.getElementById('saveBtnText').innerText = "In Drive speichern";
+          document.getElementById('saveBtn').classList.replace('bg-emerald-500', 'bg-green-600');
+        });
+
+        wrapper.appendChild(label);
+        wrapper.appendChild(select);
+        container.appendChild(wrapper);
+      });
+    }
+  </script>
+</body>
+</html>
